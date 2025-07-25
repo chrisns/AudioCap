@@ -1,0 +1,33 @@
+version: 1
+force: false
+initial_version: "1.0.0"
+tag_prefix: "v"
+branches:
+  main:
+    prerelease: false
+    initial_version: "1.0.0"
+commit_types:
+  breaking:
+    bump: major
+  feat:
+    bump: minor
+  fix:
+    bump: patch
+  docs:
+    bump: patch
+  style:
+    bump: patch
+  refactor:
+    bump: patch
+  perf:
+    bump: patch
+  test:
+    bump: patch
+  chore:
+    bump: patch
+  ci:
+    bump: patch
+  build:
+    bump: patch
+  revert:
+    bump: patch

@@ -19,7 +19,28 @@
 		F47AD9442BF5B61E005B75AC /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD9432BF5B61E005B75AC /* RootView.swift */; };
 		F47AD9462BF5B61F005B75AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47AD9452BF5B61F005B75AC /* Assets.xcassets */; };
 		F47AD9492BF5B61F005B75AC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47AD9482BF5B61F005B75AC /* Preview Assets.xcassets */; };
+		F4A1B0012C4D8A0000000001 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = F4A1B0002C4D8A0000000001 /* ViewInspector */; };
+		F4A1B0232C4D8C1000000001 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1B0222C4D8C0000000001 /* BaseTestCase.swift */; };
+		F4A1B0262C4D8C4000000001 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1B0242C4D8C2000000001 /* TestHelpers.swift */; };
+		F4A1B0272C4D8C5000000001 /* AudioTestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1B0252C4D8C3000000001 /* AudioTestUtilities.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F4A1B0022C4D8A1000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F47AD9362BF5B61E005B75AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F47AD93D2BF5B61E005B75AC;
+			remoteInfo = AudioCap;
+		};
+		F4A1B0042C4D8A2000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F47AD9362BF5B61E005B75AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F47AD93D2BF5B61E005B75AC;
+			remoteInfo = AudioCap;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		F431728C2BF68C0C00D918A3 /* AudioRecordingPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingPermission.swift; sourceTree = "<group>"; };
@@ -31,6 +52,7 @@
 		F43172992BF7A51A00D918A3 /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
 		F431729B2BF7B66A00D918A3 /* FileProxyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProxyView.swift; sourceTree = "<group>"; };
 		F431729E2BF7BB0E00D918A3 /* Main.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Main.xcconfig; sourceTree = "<group>"; };
+		F4A1B0212C4D8BF000000001 /* Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Test.xcconfig; sourceTree = "<group>"; };
 		F43172A02BF7BF1300D918A3 /* RecordingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingIndicator.swift; sourceTree = "<group>"; };
 		F47AD93E2BF5B61E005B75AC /* AudioCap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioCap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47AD9412BF5B61E005B75AC /* AudioCapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCapApp.swift; sourceTree = "<group>"; };
@@ -38,10 +60,30 @@
 		F47AD9452BF5B61F005B75AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F47AD9482BF5B61F005B75AC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F47AD94A2BF5B61F005B75AC /* AudioCap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioCap.entitlements; sourceTree = "<group>"; };
+		F4A1B0052C4D8A3000000001 /* AudioCapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioCapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4A1B0062C4D8A4000000001 /* AudioCapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioCapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4A1B0222C4D8C0000000001 /* BaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
+		F4A1B0242C4D8C2000000001 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		F4A1B0252C4D8C3000000001 /* AudioTestUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTestUtilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F47AD93B2BF5B61E005B75AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4A1B0072C4D8A5000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4A1B0012C4D8A0000000001 /* ViewInspector in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4A1B0082C4D8A6000000001 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -55,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				F431729E2BF7BB0E00D918A3 /* Main.xcconfig */,
+				F4A1B0212C4D8BF000000001 /* Test.xcconfig */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -74,6 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				F47AD9402BF5B61E005B75AC /* AudioCap */,
+				F4A1B0092C4D8A7000000001 /* AudioCapTests */,
+				F4A1B00A2C4D8A8000000001 /* AudioCapUITests */,
 				F47AD93F2BF5B61E005B75AC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -82,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				F47AD93E2BF5B61E005B75AC /* AudioCap.app */,
+				F4A1B0052C4D8A3000000001 /* AudioCapTests.xctest */,
+				F4A1B0062C4D8A4000000001 /* AudioCapUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,6 +160,79 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		F4A1B0092C4D8A7000000001 /* AudioCapTests */ = {
+			isa = PBXGroup;
+			children = (
+				F4A1B00B2C4D8A9000000001 /* Core */,
+				F4A1B00C2C4D8AA000000001 /* UI */,
+				F4A1B00D2C4D8AB000000001 /* Controllers */,
+				F4A1B00E2C4D8AC000000001 /* Mocks */,
+				F4A1B00F2C4D8AD000000001 /* Utilities */,
+				F4A1B0102C4D8AE000000001 /* Integration */,
+				F4A1B0112C4D8AF000000001 /* Performance */,
+			);
+			path = AudioCapTests;
+			sourceTree = "<group>";
+		};
+		F4A1B00A2C4D8A8000000001 /* AudioCapUITests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AudioCapUITests;
+			sourceTree = "<group>";
+		};
+		F4A1B00B2C4D8A9000000001 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		F4A1B00C2C4D8AA000000001 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		F4A1B00D2C4D8AB000000001 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F4A1B00E2C4D8AC000000001 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		F4A1B00F2C4D8AD000000001 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F4A1B0222C4D8C0000000001 /* BaseTestCase.swift */,
+				F4A1B0242C4D8C2000000001 /* TestHelpers.swift */,
+				F4A1B0252C4D8C3000000001 /* AudioTestUtilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		F4A1B0102C4D8AE000000001 /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Integration;
+			sourceTree = "<group>";
+		};
+		F4A1B0112C4D8AF000000001 /* Performance */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Performance;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,9 +249,50 @@
 			dependencies = (
 			);
 			name = AudioCap;
+			packageProductDependencies = (
+			);
 			productName = AudioCap;
 			productReference = F47AD93E2BF5B61E005B75AC /* AudioCap.app */;
 			productType = "com.apple.product-type.application";
+		};
+		F4A1B0122C4D8B0000000001 /* AudioCapTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4A1B0132C4D8B1000000001 /* Build configuration list for PBXNativeTarget "AudioCapTests" */;
+			buildPhases = (
+				F4A1B0142C4D8B2000000001 /* Sources */,
+				F4A1B0072C4D8A5000000001 /* Frameworks */,
+				F4A1B0152C4D8B3000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4A1B0162C4D8B4000000001 /* PBXTargetDependency */,
+			);
+			name = AudioCapTests;
+			packageProductDependencies = (
+				F4A1B0002C4D8A0000000001 /* ViewInspector */,
+			);
+			productName = AudioCapTests;
+			productReference = F4A1B0052C4D8A3000000001 /* AudioCapTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F4A1B0172C4D8B5000000001 /* AudioCapUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4A1B0182C4D8B6000000001 /* Build configuration list for PBXNativeTarget "AudioCapUITests" */;
+			buildPhases = (
+				F4A1B0192C4D8B7000000001 /* Sources */,
+				F4A1B0082C4D8A6000000001 /* Frameworks */,
+				F4A1B01A2C4D8B8000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4A1B01B2C4D8B9000000001 /* PBXTargetDependency */,
+			);
+			name = AudioCapUITests;
+			productName = AudioCapUITests;
+			productReference = F4A1B0062C4D8A4000000001 /* AudioCapUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -146,6 +307,14 @@
 					F47AD93D2BF5B61E005B75AC = {
 						CreatedOnToolsVersion = 15.3;
 					};
+					F4A1B0122C4D8B0000000001 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = F47AD93D2BF5B61E005B75AC;
+					};
+					F4A1B0172C4D8B5000000001 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = F47AD93D2BF5B61E005B75AC;
+					};
 				};
 			};
 			buildConfigurationList = F47AD9392BF5B61E005B75AC /* Build configuration list for PBXProject "AudioCap" */;
@@ -157,11 +326,16 @@
 				Base,
 			);
 			mainGroup = F47AD9352BF5B61E005B75AC;
+			packageReferences = (
+				F4A1B01C2C4D8BA000000001 /* XCRemoteSwiftPackageReference "ViewInspector" */,
+			);
 			productRefGroup = F47AD93F2BF5B61E005B75AC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				F47AD93D2BF5B61E005B75AC /* AudioCap */,
+				F4A1B0122C4D8B0000000001 /* AudioCapTests */,
+				F4A1B0172C4D8B5000000001 /* AudioCapUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -173,6 +347,20 @@
 			files = (
 				F47AD9492BF5B61F005B75AC /* Preview Assets.xcassets in Resources */,
 				F47AD9462BF5B61F005B75AC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4A1B0152C4D8B3000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4A1B01A2C4D8B8000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,7 +384,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F4A1B0142C4D8B2000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4A1B0232C4D8C1000000001 /* BaseTestCase.swift in Sources */,
+				F4A1B0262C4D8C4000000001 /* TestHelpers.swift in Sources */,
+				F4A1B0272C4D8C5000000001 /* AudioTestUtilities.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4A1B0192C4D8B7000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F4A1B0162C4D8B4000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F47AD93D2BF5B61E005B75AC /* AudioCap */;
+			targetProxy = F4A1B0022C4D8A1000000001 /* PBXContainerItemProxy */;
+		};
+		F4A1B01B2C4D8B9000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F47AD93D2BF5B61E005B75AC /* AudioCap */;
+			targetProxy = F4A1B0042C4D8A2000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F47AD94B2BF5B61F005B75AC /* Debug */ = {
@@ -204,6 +422,7 @@
 			baseConfigurationReference = F431729E2BF7BB0E00D918A3 /* Main.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -269,6 +488,7 @@
 			baseConfigurationReference = F431729E2BF7BB0E00D918A3 /* Main.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -323,13 +543,14 @@
 		F47AD94E2BF5B61F005B75AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AudioCap/AudioCap.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"AudioCap/Preview Content\"";
-				DEVELOPMENT_TEAM = 8C7439RJLG;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -349,13 +570,14 @@
 		F47AD94F2BF5B61F005B75AC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AudioCap/AudioCap.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"AudioCap/Preview Content\"";
-				DEVELOPMENT_TEAM = 8C7439RJLG;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -369,6 +591,82 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		F4A1B01D2C4D8BB000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4A1B0212C4D8BF000000001 /* Test.xcconfig */;
+			buildSettings = {
+				ARCHS = arm64;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.audiocap.AudioCapTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AudioCap.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AudioCap";
+			};
+			name = Debug;
+		};
+		F4A1B01E2C4D8BC000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4A1B0212C4D8BF000000001 /* Test.xcconfig */;
+			buildSettings = {
+				ARCHS = arm64;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.audiocap.AudioCapTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AudioCap.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AudioCap";
+			};
+			name = Release;
+		};
+		F4A1B01F2C4D8BD000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.audiocap.AudioCapUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = AudioCap;
+			};
+			name = Debug;
+		};
+		F4A1B0202C4D8BE000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.audiocap.AudioCapUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = AudioCap;
 			};
 			name = Release;
 		};
@@ -393,7 +691,44 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		F4A1B0132C4D8B1000000001 /* Build configuration list for PBXNativeTarget "AudioCapTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4A1B01D2C4D8BB000000001 /* Debug */,
+				F4A1B01E2C4D8BC000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4A1B0182C4D8B6000000001 /* Build configuration list for PBXNativeTarget "AudioCapUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4A1B01F2C4D8BD000000001 /* Debug */,
+				F4A1B0202C4D8BE000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F4A1B01C2C4D8BA000000001 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.11;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F4A1B0002C4D8A0000000001 /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4A1B01C2C4D8BA000000001 /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F47AD9362BF5B61E005B75AC /* Project object */;
 }

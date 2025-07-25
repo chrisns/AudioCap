@@ -1,0 +1,2138 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "*" ]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  test-and-build:
+    runs-on: macos-15
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history for semantic versioning
+      
+      - name: 📊 Display Workflow Context
+        run: |
+          echo "🔍 CI Pipeline Execution Context"
+          echo "================================"
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit SHA: ${{ github.sha }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Runner OS: ${{ runner.os }}"
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Job: ${{ github.job }}"
+          echo "Run ID: ${{ github.run_id }}"
+          echo "Run Number: ${{ github.run_number }}"
+          echo "Started: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "Timezone: $(date '+%Z %z')"
+          echo "================================"
+          
+          # Log step execution tracking
+          echo "STEP_START_TIME=$(date +%s)" >> $GITHUB_ENV
+          echo "CURRENT_STEP=workflow-context" >> $GITHUB_ENV
+          echo "STEP_COUNT=1" >> $GITHUB_ENV
+          
+          echo "📋 Step Tracking Initialized"
+          echo "  Current Step: 1 - Workflow Context Display"
+          echo "  Step Start: $(date)"
+          echo "  Total Expected Steps: 12"
+          echo "  Progress: 1/12 (8.3%)"
+      
+      - name: 🔧 Setup Xcode Environment
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '15.4'
+        env:
+          STEP_NAME: "Xcode Environment Setup"
+      
+      - name: 🚨 Handle Xcode Setup Failure
+        if: failure() && (steps.setup-xcode.conclusion == 'failure' || env.CURRENT_STEP == 'xcode-setup')
+        run: |
+          echo "🚨 Xcode Environment Setup Failed"
+          echo "================================="
+          echo "The Xcode setup step failed, which will prevent the build from proceeding."
+          echo ""
+          echo "📋 Failure Details:"
+          echo "  Requested Xcode Version: 15.4"
+          echo "  Runner OS: ${{ runner.os }}"
+          echo "  Failure Time: $(date)"
+          echo ""
+          echo "🔍 Common Causes:"
+          echo "1. Requested Xcode version not available on runner"
+          echo "2. GitHub Actions runner image outdated"
+          echo "3. Network issues downloading Xcode"
+          echo "4. Insufficient disk space for Xcode installation"
+          echo ""
+          echo "💡 Resolution Steps:"
+          echo "1. Check available Xcode versions on macos-15 runner"
+          echo "2. Update workflow to use available Xcode version"
+          echo "3. Verify runner image compatibility"
+          echo "4. Consider using different runner version if needed"
+          echo ""
+          echo "🔗 Useful Resources:"
+          echo "- GitHub Actions Runner Images: https://github.com/actions/runner-images"
+          echo "- Available Xcode Versions: https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md"
+          echo ""
+          echo "❌ Pipeline terminated due to Xcode setup failure"
+      
+      - name: 📋 Log Step Progress - Xcode Setup
+        run: |
+          # Update step tracking
+          PREV_STEP_END=$(date +%s)
+          PREV_STEP_DURATION=$((PREV_STEP_END - STEP_START_TIME))
+          NEW_STEP_COUNT=$((STEP_COUNT + 1))
+          
+          echo "STEP_START_TIME=$(date +%s)" >> $GITHUB_ENV
+          echo "CURRENT_STEP=xcode-setup" >> $GITHUB_ENV
+          echo "STEP_COUNT=$NEW_STEP_COUNT" >> $GITHUB_ENV
+          
+          echo "📊 Step Progress Update"
+          echo "======================"
+          echo "✅ Completed: Step ${{ env.STEP_COUNT }} - ${{ env.CURRENT_STEP }} (${PREV_STEP_DURATION}s)"
+          echo "🔄 Starting: Step $NEW_STEP_COUNT - Xcode Environment Setup"
+          echo "⏱️  Step Start Time: $(date)"
+          PROGRESS_PERCENT=$(( (NEW_STEP_COUNT * 100) / 12 ))
+          echo "📈 Pipeline Progress: $NEW_STEP_COUNT/12 steps (${PROGRESS_PERCENT}%)"
+      
+      - name: 📋 Verify Xcode Installation
+        run: |
+          # Update step tracking
+          PREV_STEP_END=$(date +%s)
+          PREV_STEP_DURATION=$((PREV_STEP_END - STEP_START_TIME))
+          NEW_STEP_COUNT=$((STEP_COUNT + 1))
+          
+          echo "STEP_START_TIME=$(date +%s)" >> $GITHUB_ENV
+          echo "CURRENT_STEP=xcode-verification" >> $GITHUB_ENV
+          echo "STEP_COUNT=$NEW_STEP_COUNT" >> $GITHUB_ENV
+          
+          echo "📊 Step Progress Update"
+          echo "======================"
+          echo "✅ Completed: Step ${{ env.STEP_COUNT }} - ${{ env.CURRENT_STEP }} (${PREV_STEP_DURATION}s)"
+          echo "🔄 Starting: Step $NEW_STEP_COUNT - Xcode Installation Verification"
+          echo "⏱️  Step Start Time: $(date)"
+          echo "📈 Pipeline Progress: $NEW_STEP_COUNT/12 steps"
+          echo ""
+          
+          echo "🔍 Xcode Environment Verification"
+          echo "================================="
+          echo "Verification Start: $(date)"
+          
+          # Detailed Xcode information logging
+          echo "📱 Xcode Installation Details:"
+          XCODE_VERSION=$(xcodebuild -version | head -1)
+          XCODE_BUILD=$(xcodebuild -version | tail -1)
+          XCODE_PATH=$(xcode-select -p)
+          
+          echo "  Version: $XCODE_VERSION"
+          echo "  Build: $XCODE_BUILD"
+          echo "  Path: $XCODE_PATH"
+          echo "  Installation Size: $(du -sh "$XCODE_PATH" 2>/dev/null | cut -f1 || echo 'Unknown')"
+          
+          echo ""
+          echo "🛠️  Available Development Tools:"
+          echo "  Swift: $(swift --version | head -1)"
+          echo "  Clang: $(clang --version | head -1)"
+          echo "  Git: $(git --version)"
+          
+          echo ""
+          echo "📦 Available SDKs:"
+          xcodebuild -showsdks | grep macOS | sed 's/^/  /'
+          
+          echo ""
+          echo "🎯 Target Platform Information:"
+          echo "  macOS Version: $(sw_vers -productVersion)"
+          echo "  Architecture: $(uname -m)"
+          echo "  Kernel: $(uname -r)"
+          
+          echo ""
+          echo "✅ Xcode verification completed at: $(date)"
+          echo "================================="
+      
+      - name: ⚙️ Configure Build Environment
+        run: |
+          # Update step tracking
+          PREV_STEP_END=$(date +%s)
+          PREV_STEP_DURATION=$((PREV_STEP_END - STEP_START_TIME))
+          NEW_STEP_COUNT=$((STEP_COUNT + 1))
+          
+          echo "STEP_START_TIME=$(date +%s)" >> $GITHUB_ENV
+          echo "CURRENT_STEP=environment-config" >> $GITHUB_ENV
+          echo "STEP_COUNT=$NEW_STEP_COUNT" >> $GITHUB_ENV
+          
+          echo "📊 Step Progress Update"
+          echo "======================"
+          echo "✅ Completed: Step ${{ env.STEP_COUNT }} - ${{ env.CURRENT_STEP }} (${PREV_STEP_DURATION}s)"
+          echo "🔄 Starting: Step $NEW_STEP_COUNT - Build Environment Configuration"
+          echo "⏱️  Step Start Time: $(date)"
+          echo "📈 Pipeline Progress: $NEW_STEP_COUNT/12 steps"
+          echo ""
+          
+          echo "🔧 Configuring AudioCap Build Environment"
+          echo "========================================="
+          echo "Configuration Start: $(date)"
+          
+          # Set environment variables with detailed logging
+          echo "📝 Setting Environment Variables:"
+          
+          DEVELOPER_DIR="/Applications/Xcode_15.4.app/Contents/Developer"
+          echo "DEVELOPER_DIR=$DEVELOPER_DIR" >> $GITHUB_ENV
+          echo "  ✅ DEVELOPER_DIR: $DEVELOPER_DIR"
+          
+          echo "AUDIOCAP_TEST_MODE=1" >> $GITHUB_ENV
+          echo "  ✅ AUDIOCAP_TEST_MODE: 1 (enables CI test mode)"
+          
+          echo "AUDIOCAP_MOCK_AUDIO=1" >> $GITHUB_ENV
+          echo "  ✅ AUDIOCAP_MOCK_AUDIO: 1 (uses mock audio for testing)"
+          
+          # Verify environment setup
+          echo ""
+          echo "🔍 Environment Verification:"
+          echo "  Current PATH: ${PATH:0:100}..."
+          echo "  Shell: $SHELL"
+          echo "  User: $(whoami)"
+          echo "  Working Directory: $(pwd)"
+          echo "  Available Memory: $(vm_stat | grep 'Pages free' | awk '{print $3}' | sed 's/\.//' || echo 'Unknown')"
+          echo "  Available Disk: $(df -h . | tail -1 | awk '{print $4}')"
+          
+          echo ""
+          echo "✅ Environment configuration completed at: $(date)"
+          echo "========================================="
+      
+      - name: 🚨 Handle Environment Configuration Failure
+        if: failure() && env.CURRENT_STEP == 'environment-config'
+        run: |
+          echo "🚨 Environment Configuration Failed"
+          echo "=================================="
+          echo "The environment configuration step failed."
+          echo ""
+          echo "📋 Failure Details:"
+          echo "  Step: Environment Configuration"
+          echo "  Failure Time: $(date)"
+          echo "  Expected Variables: DEVELOPER_DIR, AUDIOCAP_TEST_MODE, AUDIOCAP_MOCK_AUDIO"
+          echo ""
+          echo "🔍 Common Causes:"
+          echo "1. Shell script syntax errors"
+          echo "2. Permission issues setting environment variables"
+          echo "3. Disk space issues"
+          echo "4. System resource constraints"
+          echo ""
+          echo "💡 Resolution Steps:"
+          echo "1. Check shell script syntax in environment configuration"
+          echo "2. Verify GitHub Actions environment variable syntax"
+          echo "3. Ensure sufficient system resources"
+          echo "4. Review recent changes to environment setup"
+          echo ""
+          echo "🔧 Environment Diagnostics:"
+          echo "  Shell: $SHELL"
+          echo "  User: $(whoami)"
+          echo "  Working Directory: $(pwd)"
+          echo "  Available Disk: $(df -h . | tail -1 | awk '{print $4}' || echo 'Unknown')"
+          echo ""
+          echo "❌ Pipeline terminated due to environment configuration failure"
+      
+      - name: 🧪 Execute Test Suite
+        run: |
+          set -e
+          
+          # Update step tracking
+          PREV_STEP_END=$(date +%s)
+          PREV_STEP_DURATION=$((PREV_STEP_END - STEP_START_TIME))
+          NEW_STEP_COUNT=$((STEP_COUNT + 1))
+          
+          echo "STEP_START_TIME=$(date +%s)" >> $GITHUB_ENV
+          echo "CURRENT_STEP=test-execution" >> $GITHUB_ENV
+          echo "STEP_COUNT=$NEW_STEP_COUNT" >> $GITHUB_ENV
+          
+          echo "📊 Step Progress Update"
+          echo "======================"
+          echo "✅ Completed: Step ${{ env.STEP_COUNT }} - ${{ env.CURRENT_STEP }} (${PREV_STEP_DURATION}s)"
+          echo "🔄 Starting: Step $NEW_STEP_COUNT - Test Suite Execution"
+          echo "⏱️  Step Start Time: $(date)"
+          PROGRESS_PERCENT=$(( (NEW_STEP_COUNT * 100) / 12 ))
+          echo "📈 Pipeline Progress: $NEW_STEP_COUNT/12 steps (${PROGRESS_PERCENT}%)"
+          echo ""
+          
+          echo "🧪 Starting AudioCap Test Execution"
+          echo "==================================="
+          echo "Execution Start: $(date)"
+          echo "Project: AudioCap.xcodeproj"
+          echo "Scheme: AudioCap"
+          echo "Platform: macOS"
+          echo "Code Coverage: Enabled"
+          echo "Test Mode: CI (AUDIOCAP_TEST_MODE=1)"
+          echo "Audio Mocking: Enabled (AUDIOCAP_MOCK_AUDIO=1)"
+          echo ""
+          
+          # Log test environment details
+          echo "🔍 Test Environment Details:"
+          echo "  Xcode Version: $(xcodebuild -version | head -1)"
+          echo "  Swift Version: $(swift --version | head -1)"
+          echo "  Test Runner: xcodebuild"
+          echo "  Timeout: 1800 seconds (30 minutes)"
+          echo "  Output Logging: Enabled (test_output.log)"
+          echo ""
+          
+          # Record start time
+          TEST_START_TIME=$(date +%s)
+          echo "Test execution started at: $(date)"
+          
+          # Execute tests with detailed logging and error handling
+          echo "🚀 Executing xcodebuild test command..."
+          
+          # Set up error handling for test execution
+          set +e  # Don't exit on error, we want to capture and analyze it
+          
+          # Execute tests with timeout protection
+          timeout 1800 xcodebuild test \
+            -project AudioCap.xcodeproj \
+            -scheme AudioCap \
+            -destination 'platform=macOS' \
+            -enableCodeCoverage YES \
+            -quiet \
+            | tee test_output.log
+          
+          # Capture exit code and handle timeout
+          TEST_EXIT_CODE=${PIPESTATUS[0]}
+          TIMEOUT_EXIT_CODE=$?
+          
+          if [ $TIMEOUT_EXIT_CODE -eq 124 ]; then
+            echo "❌ Test execution timed out after 30 minutes"
+            echo "This may indicate:"
+            echo "  - Infinite loops in test code"
+            echo "  - Deadlocks in audio processing"
+            echo "  - System resource exhaustion"
+            TEST_EXIT_CODE=124
+          fi
+          
+          set -e  # Re-enable exit on error
+          
+          TEST_END_TIME=$(date +%s)
+          TEST_DURATION=$((TEST_END_TIME - TEST_START_TIME))
+          
+          echo ""
+          echo "📊 Test Execution Summary"
+          echo "========================"
+          echo "Duration: ${TEST_DURATION} seconds"
+          echo "Exit Code: $TEST_EXIT_CODE"
+          
+          # Check if tests passed
+          if [ $TEST_EXIT_CODE -ne 0 ]; then
+            echo "❌ Tests failed with exit code: $TEST_EXIT_CODE"
+            echo ""
+            echo "📋 Test Output Preview:"
+            echo "======================="
+            tail -50 test_output.log
+            exit 1
+          else
+            echo "✅ All tests passed successfully!"
+            
+            # Count test results if possible
+            if grep -q "Test Suite.*passed" test_output.log; then
+              PASSED_TESTS=$(grep -o "Test Suite.*passed" test_output.log | wc -l | xargs)
+              echo "📈 Test suites passed: $PASSED_TESTS"
+            fi
+            
+            if grep -q "tests passed" test_output.log; then
+              TOTAL_TESTS=$(grep -o "[0-9]* tests passed" test_output.log | head -1 | grep -o "[0-9]*")
+              if [ -n "$TOTAL_TESTS" ]; then
+                echo "📈 Individual tests passed: $TOTAL_TESTS"
+              fi
+            fi
+          fi
+      
+      - name: 📋 Analyze Test Failures
+        if: failure() && env.CURRENT_STEP == 'test-execution'
+        run: |
+          echo "🔍 Comprehensive Test Failure Analysis"
+          echo "====================================="
+          echo "Timestamp: $(date)"
+          echo "Job Status: FAILED"
+          echo "Failed Step: Test Execution"
+          echo "Pipeline Progress: ${{ env.STEP_COUNT }}/12 steps"
+          echo ""
+          
+          # Display test output if available
+          if [ -f test_output.log ]; then
+            echo "📄 Complete Test Output:"
+            echo "========================"
+            cat test_output.log
+            echo ""
+            
+            # Extract specific failure information
+            echo "🚨 Test Failure Summary:"
+            echo "========================"
+            
+            # Look for failed tests
+            if grep -q "FAIL" test_output.log; then
+              echo "Failed test cases:"
+              grep "FAIL" test_output.log | head -10
+            fi
+            
+            # Look for compilation errors
+            if grep -q "error:" test_output.log; then
+              echo ""
+              echo "Compilation errors found:"
+              grep "error:" test_output.log | head -10
+            fi
+            
+            # Look for warnings
+            if grep -q "warning:" test_output.log; then
+              echo ""
+              echo "Compilation warnings found:"
+              grep "warning:" test_output.log | head -10
+            fi
+          else
+            echo "❌ No test output log found (test_output.log missing)"
+          fi
+          
+          echo ""
+          echo "🔍 Searching for Test Result Files:"
+          echo "==================================="
+          
+          # Find and analyze .xcresult files
+          XCRESULT_FILES=$(find . -name "*.xcresult" -type d | head -5)
+          
+          if [ -n "$XCRESULT_FILES" ]; then
+            echo "$XCRESULT_FILES" | while read result_dir; do
+              echo "📊 Analyzing test results in: $result_dir"
+              
+              if command -v xcrun >/dev/null 2>&1; then
+                echo "Extracting test summary..."
+                xcrun xcresulttool get --format json --path "$result_dir" 2>/dev/null | jq -r '.issues.testFailureSummaries[]?.message // "No detailed failure information available"' | head -5 || {
+                  echo "Unable to extract detailed test results"
+                  xcrun xcresulttool get --path "$result_dir" 2>/dev/null || echo "Failed to read xcresult file"
+                }
+              else
+                echo "xcrun not available for detailed analysis"
+              fi
+              echo ""
+            done
+          else
+            echo "No .xcresult files found"
+          fi
+          
+          echo ""
+          echo "💡 Troubleshooting Tips:"
+          echo "======================="
+          echo "1. Check for compilation errors in the output above"
+          echo "2. Verify all test dependencies are properly configured"
+          echo "3. Ensure AUDIOCAP_TEST_MODE and AUDIOCAP_MOCK_AUDIO are set correctly"
+          echo "4. Review recent code changes that might affect tests"
+      
+      - name: 🏗️ Build AudioCap Application
+        run: |
+          set -e
+          
+          # Update step tracking
+          PREV_STEP_END=$(date +%s)
+          PREV_STEP_DURATION=$((PREV_STEP_END - STEP_START_TIME))
+          NEW_STEP_COUNT=$((STEP_COUNT + 1))
+          
+          echo "STEP_START_TIME=$(date +%s)" >> $GITHUB_ENV
+          echo "CURRENT_STEP=application-build" >> $GITHUB_ENV
+          echo "STEP_COUNT=$NEW_STEP_COUNT" >> $GITHUB_ENV
+          
+          echo "📊 Step Progress Update"
+          echo "======================"
+          echo "✅ Completed: Step ${{ env.STEP_COUNT }} - ${{ env.CURRENT_STEP }} (${PREV_STEP_DURATION}s)"
+          echo "🔄 Starting: Step $NEW_STEP_COUNT - Application Build"
+          echo "⏱️  Step Start Time: $(date)"
+          PROGRESS_PERCENT=$(( (NEW_STEP_COUNT * 100) / 12 ))
+          echo "📈 Pipeline Progress: $NEW_STEP_COUNT/12 steps (${PROGRESS_PERCENT}%)"
+          echo ""
+          
+          echo "🏗️ Starting AudioCap Application Build"
+          echo "======================================"
+          echo "Build Start: $(date)"
+          echo "Project: AudioCap.xcodeproj"
+          echo "Scheme: AudioCap"
+          echo "Configuration: Release"
+          echo "Platform: macOS"
+          echo "Build Type: Production Release"
+          echo ""
+          
+          # Log build environment details
+          echo "🔍 Build Environment Details:"
+          echo "  Xcode Version: $(xcodebuild -version | head -1)"
+          echo "  Swift Version: $(swift --version | head -1)"
+          echo "  Build Tool: xcodebuild"
+          echo "  Timeout: 1200 seconds (20 minutes)"
+          echo "  Output Logging: Enabled (build_output.log)"
+          echo "  Target Architecture: Universal (Apple Silicon + Intel)"
+          echo ""
+          
+          # Record build start time
+          BUILD_START_TIME=$(date +%s)
+          echo "Build started at: $(date)"
+          
+          # Execute build with detailed logging and error handling
+          echo "🚀 Executing xcodebuild build command..."
+          
+          # Set up error handling for build execution
+          set +e  # Don't exit on error, we want to capture and analyze it
+          
+          # Execute build with timeout protection
+          timeout 1200 xcodebuild build \
+            -project AudioCap.xcodeproj \
+            -scheme AudioCap \
+            -configuration Release \
+            -destination 'platform=macOS' \
+            -quiet \
+            | tee build_output.log
+          
+          # Capture exit code and handle timeout
+          BUILD_EXIT_CODE=${PIPESTATUS[0]}
+          TIMEOUT_EXIT_CODE=$?
+          
+          if [ $TIMEOUT_EXIT_CODE -eq 124 ]; then
+            echo "❌ Build execution timed out after 20 minutes"
+            echo "This may indicate:"
+            echo "  - Extremely large codebase compilation"
+            echo "  - Infinite compilation loops"
+            echo "  - System resource exhaustion"
+            echo "  - Network issues with dependency resolution"
+            BUILD_EXIT_CODE=124
+          fi
+          
+          set -e  # Re-enable exit on error
+          
+          BUILD_END_TIME=$(date +%s)
+          BUILD_DURATION=$((BUILD_END_TIME - BUILD_START_TIME))
+          
+          echo ""
+          echo "📊 Build Execution Summary"
+          echo "=========================="
+          echo "Duration: ${BUILD_DURATION} seconds"
+          echo "Exit Code: $BUILD_EXIT_CODE"
+          
+          # Check if build passed
+          if [ $BUILD_EXIT_CODE -ne 0 ]; then
+            echo "❌ Build failed with exit code: $BUILD_EXIT_CODE"
+            echo ""
+            echo "📋 Build Output Preview:"
+            echo "======================="
+            tail -50 build_output.log
+            exit 1
+          else
+            echo "✅ Build completed successfully!"
+            
+            # Display build statistics if available
+            if grep -q "Build succeeded" build_output.log; then
+              echo "📈 Build status: SUCCESS"
+            fi
+            
+            # Check for warnings
+            WARNING_COUNT=$(grep -c "warning:" build_output.log || echo "0")
+            if [ "$WARNING_COUNT" -gt 0 ]; then
+              echo "⚠️  Build warnings: $WARNING_COUNT"
+            else
+              echo "✨ Build warnings: 0 (clean build)"
+            fi
+          fi
+      
+      - name: 📋 Analyze Build Failures
+        if: failure() && env.CURRENT_STEP == 'application-build'
+        run: |
+          echo "🔍 Comprehensive Build Failure Analysis"
+          echo "======================================"
+          echo "Timestamp: $(date)"
+          echo "Job Status: FAILED"
+          echo "Failed Step: Application Build"
+          echo "Pipeline Progress: ${{ env.STEP_COUNT }}/12 steps"
+          echo ""
+          
+          # Display build output if available
+          if [ -f build_output.log ]; then
+            echo "📄 Complete Build Output:"
+            echo "========================="
+            cat build_output.log
+            echo ""
+            
+            # Extract specific failure information
+            echo "🚨 Build Failure Summary:"
+            echo "========================="
+            
+            # Look for compilation errors
+            if grep -q "error:" build_output.log; then
+              echo "Compilation errors found:"
+              grep "error:" build_output.log | head -20
+              echo ""
+            fi
+            
+            # Look for linker errors
+            if grep -q "ld:" build_output.log; then
+              echo "Linker errors found:"
+              grep "ld:" build_output.log | head -10
+              echo ""
+            fi
+            
+            # Look for warnings that might be related
+            if grep -q "warning:" build_output.log; then
+              echo "Compilation warnings (may indicate issues):"
+              grep "warning:" build_output.log | head -10
+              echo ""
+            fi
+            
+            # Look for missing files or dependencies
+            if grep -q "No such file" build_output.log; then
+              echo "Missing files detected:"
+              grep "No such file" build_output.log | head -10
+              echo ""
+            fi
+            
+            # Check for code signing issues
+            if grep -q "Code Sign" build_output.log; then
+              echo "Code signing issues:"
+              grep "Code Sign" build_output.log | head -10
+              echo ""
+            fi
+          else
+            echo "❌ No build output log found (build_output.log missing)"
+          fi
+          
+          echo ""
+          echo "💡 Build Troubleshooting Tips:"
+          echo "============================="
+          echo "1. Check for syntax errors in Swift code"
+          echo "2. Verify all required frameworks are available"
+          echo "3. Ensure Xcode version compatibility"
+          echo "4. Check for missing or corrupted project files"
+          echo "5. Verify build configuration settings"
+      
+      - name: 📦 Prepare Release Artifacts
+        run: |
+          set -e
+          
+          # Update step tracking
+          PREV_STEP_END=$(date +%s)
+          PREV_STEP_DURATION=$((PREV_STEP_END - STEP_START_TIME))
+          NEW_STEP_COUNT=$((STEP_COUNT + 1))
+          
+          echo "STEP_START_TIME=$(date +%s)" >> $GITHUB_ENV
+          echo "CURRENT_STEP=artifact-preparation" >> $GITHUB_ENV
+          echo "STEP_COUNT=$NEW_STEP_COUNT" >> $GITHUB_ENV
+          
+          echo "📊 Step Progress Update"
+          echo "======================"
+          echo "✅ Completed: Step ${{ env.STEP_COUNT }} - ${{ env.CURRENT_STEP }} (${PREV_STEP_DURATION}s)"
+          echo "🔄 Starting: Step $NEW_STEP_COUNT - Release Artifact Preparation"
+          echo "⏱️  Step Start Time: $(date)"
+          echo "📈 Pipeline Progress: $NEW_STEP_COUNT/12 steps"
+          echo ""
+          
+          echo "📦 Preparing AudioCap Application Bundle"
+          echo "========================================"
+          echo "Preparation Start: $(date)"
+          echo "Starting artifact preparation process..."
+          
+          # Find the built application bundle
+          echo "🔍 Locating built application bundle..."
+          BUILD_DIR=$(xcodebuild -project AudioCap.xcodeproj -scheme AudioCap -configuration Release -showBuildSettings | grep "BUILT_PRODUCTS_DIR" | head -1 | sed 's/.*= //')
+          APP_BUNDLE="$BUILD_DIR/AudioCap.app"
+          
+          echo "📁 Build directory: $BUILD_DIR"
+          echo "📱 Application bundle path: $APP_BUNDLE"
+          
+          # Validate that the application bundle exists and is valid
+          echo ""
+          echo "🔍 Validating Application Bundle"
+          echo "================================"
+          
+          if [ ! -d "$APP_BUNDLE" ]; then
+            echo "❌ Application bundle not found at: $APP_BUNDLE"
+            echo ""
+            echo "📋 Build directory contents:"
+            ls -la "$BUILD_DIR" 2>/dev/null || echo "Build directory not accessible"
+            echo ""
+            echo "🔍 Searching for .app bundles in build area:"
+            find . -name "*.app" -type d 2>/dev/null | head -10 || echo "No .app bundles found"
+            exit 1
+          fi
+          
+          echo "✅ Application bundle found: $APP_BUNDLE"
+          
+          # Validate bundle structure
+          echo ""
+          echo "🔍 Validating Bundle Structure"
+          echo "=============================="
+          
+          if [ ! -f "$APP_BUNDLE/Contents/MacOS/AudioCap" ]; then
+            echo "❌ Invalid application bundle structure - missing executable"
+            echo ""
+            echo "📋 Bundle contents:"
+            find "$APP_BUNDLE" -type f 2>/dev/null | head -10 || echo "Cannot list bundle contents"
+            echo ""
+            echo "📋 MacOS directory contents:"
+            ls -la "$APP_BUNDLE/Contents/MacOS/" 2>/dev/null || echo "MacOS directory not found"
+            exit 1
+          fi
+          
+          echo "✅ Executable found: $APP_BUNDLE/Contents/MacOS/AudioCap"
+          
+          # Validate bundle Info.plist
+          if [ ! -f "$APP_BUNDLE/Contents/Info.plist" ]; then
+            echo "❌ Invalid application bundle structure - missing Info.plist"
+            echo ""
+            echo "📋 Contents directory:"
+            ls -la "$APP_BUNDLE/Contents/" 2>/dev/null || echo "Contents directory not accessible"
+            exit 1
+          fi
+          
+          echo "✅ Info.plist found: $APP_BUNDLE/Contents/Info.plist"
+          echo "✅ Application bundle structure validation passed"
+          
+          # Get bundle information
+          echo ""
+          echo "📋 Extracting Bundle Information"
+          echo "================================"
+          
+          BUNDLE_VERSION=$(plutil -extract CFBundleShortVersionString raw "$APP_BUNDLE/Contents/Info.plist" 2>/dev/null || echo "unknown")
+          BUNDLE_ID=$(plutil -extract CFBundleIdentifier raw "$APP_BUNDLE/Contents/Info.plist" 2>/dev/null || echo "unknown")
+          BUNDLE_BUILD=$(plutil -extract CFBundleVersion raw "$APP_BUNDLE/Contents/Info.plist" 2>/dev/null || echo "unknown")
+          
+          echo "📱 Bundle Identifier: $BUNDLE_ID"
+          echo "📊 Bundle Version: $BUNDLE_VERSION"
+          echo "🔢 Bundle Build: $BUNDLE_BUILD"
+          
+          # Get bundle size
+          BUNDLE_SIZE=$(du -sh "$APP_BUNDLE" | cut -f1)
+          echo "📏 Bundle Size: $BUNDLE_SIZE"
+          
+          # Create distribution directory
+          echo ""
+          echo "📦 Creating Distribution Package"
+          echo "==============================="
+          
+          echo "📁 Creating distribution directory..."
+          mkdir -p dist
+          
+          # Copy application bundle to distribution directory
+          echo "📋 Copying application bundle to distribution directory..."
+          cp -R "$APP_BUNDLE" dist/
+          
+          # Verify copy was successful
+          if [ ! -d "dist/AudioCap.app" ]; then
+            echo "❌ Failed to copy application bundle to distribution directory"
+            exit 1
+          fi
+          
+          echo "✅ Application bundle copied successfully"
+          
+          # Create compressed archive for release attachment
+          echo ""
+          echo "🗜️ Creating compressed archive for distribution..."
+          cd dist
+          
+          # Create zip with progress indication
+          zip -r "../AudioCap-${BUNDLE_VERSION}.zip" AudioCap.app
+          ZIP_EXIT_CODE=$?
+          cd ..
+          
+          # Verify archive was created successfully
+          if [ $ZIP_EXIT_CODE -ne 0 ] || [ ! -f "AudioCap-${BUNDLE_VERSION}.zip" ]; then
+            echo "❌ Failed to create compressed archive (exit code: $ZIP_EXIT_CODE)"
+            echo "📋 Current directory contents:"
+            ls -la
+            exit 1
+          fi
+          
+          ARCHIVE_SIZE=$(ls -lh "AudioCap-${BUNDLE_VERSION}.zip" | awk '{print $5}')
+          echo "✅ Created compressed archive: AudioCap-${BUNDLE_VERSION}.zip"
+          echo "📏 Archive size: $ARCHIVE_SIZE"
+          
+          # Store artifact information for subsequent steps
+          echo ""
+          echo "💾 Storing Artifact Information"
+          echo "=============================="
+          
+          echo "ARTIFACT_PATH=AudioCap-${BUNDLE_VERSION}.zip" >> $GITHUB_ENV
+          echo "BUNDLE_VERSION=${BUNDLE_VERSION}" >> $GITHUB_ENV
+          echo "APP_BUNDLE_PATH=dist/AudioCap.app" >> $GITHUB_ENV
+          
+          echo "✅ Environment variables set:"
+          echo "  ARTIFACT_PATH: AudioCap-${BUNDLE_VERSION}.zip"
+          echo "  BUNDLE_VERSION: ${BUNDLE_VERSION}"
+          echo "  APP_BUNDLE_PATH: dist/AudioCap.app"
+          
+          echo ""
+          echo "🎉 Artifact Preparation Complete"
+          echo "================================"
+          echo "📦 Ready for release: AudioCap-${BUNDLE_VERSION}.zip ($ARCHIVE_SIZE)"
+      
+      - name: 🚨 Handle Artifact Preparation Failure
+        if: failure() && env.CURRENT_STEP == 'artifact-preparation'
+        run: |
+          echo "🚨 Artifact Preparation Failed"
+          echo "=============================="
+          echo "The artifact preparation step failed."
+          echo ""
+          echo "📋 Failure Details:"
+          echo "  Step: Release Artifact Preparation"
+          echo "  Failure Time: $(date)"
+          echo "  Pipeline Progress: ${{ env.STEP_COUNT }}/12 steps"
+          echo ""
+          echo "🔍 Common Causes:"
+          echo "1. Build output not found or invalid"
+          echo "2. Application bundle structure issues"
+          echo "3. File system permission problems"
+          echo "4. Insufficient disk space for artifact creation"
+          echo "5. Zip compression failures"
+          echo ""
+          echo "💡 Resolution Steps:"
+          echo "1. Verify build completed successfully"
+          echo "2. Check application bundle structure"
+          echo "3. Ensure sufficient disk space"
+          echo "4. Verify file permissions"
+          echo "5. Check for corrupted build outputs"
+          echo ""
+          echo "🔧 Diagnostic Information:"
+          echo "  Working Directory: $(pwd)"
+          echo "  Available Disk: $(df -h . | tail -1 | awk '{print $4}' || echo 'Unknown')"
+          echo "  Directory Contents:"
+          ls -la 2>/dev/null || echo "  Cannot list directory contents"
+          echo ""
+          echo "🔍 Build Directory Search:"
+          find . -name "*.app" -type d 2>/dev/null | head -5 | sed 's/^/  /' || echo "  No .app bundles found"
+          echo ""
+          echo "❌ Pipeline terminated due to artifact preparation failure"
+      
+      - name: 🔍 Check Semantic Version Configuration
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "🔍 Checking Semantic Version Configuration"
+          echo "========================================="
+          
+          # Check if semver config file exists
+          if [ ! -f ".github/semver.yaml" ]; then
+            echo "⚠️  Warning: .github/semver.yaml not found"
+            echo "Creating default semantic version configuration..."
+            
+            # Create .github directory if it doesn't exist
+            mkdir -p .github
+            
+            # Create default semver configuration
+            cat > .github/semver.yaml << 'EOF'
+# Semantic Version Generator Configuration
+version: 1
+force: false
+major:
+  - "BREAKING CHANGE"
+  - "major"
+minor:
+  - "feat"
+  - "feature"
+  - "minor"
+patch:
+  - "fix"
+  - "patch"
+  - "bugfix"
+  - "hotfix"
+  - "chore"
+  - "docs"
+  - "style"
+  - "refactor"
+  - "perf"
+  - "test"
+none:
+  - "ci"
+  - "build"
+EOF
+            
+            echo "✅ Created default semver configuration"
+          else
+            echo "✅ Semantic version configuration found"
+          fi
+          
+          echo "📋 Configuration file contents:"
+          cat .github/semver.yaml
+          echo "========================================="
+      
+      - name: 🏷️ Generate Semantic Version (Main Branch Only)
+        if: github.ref == 'refs/heads/main'
+        id: semver
+        uses: lukaszraczylo/semver-generator@v1
+        with:
+          config_file: .github/semver.yaml
+          repository_local: true
+          github_username: ${{ github.actor }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+      
+      - name: 📊 Display Version Information
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "🏷️ Semantic Version Generation Results"
+          echo "======================================"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Generated Version: ${{ steps.semver.outputs.semantic_version }}"
+          echo "Previous Version: ${{ steps.semver.outputs.previous_version }}"
+          echo "Version Type: ${{ steps.semver.outputs.version_type }}"
+          echo ""
+          
+          # Validate semantic version output
+          SEMANTIC_VERSION="${{ steps.semver.outputs.semantic_version }}"
+          
+          if [ -z "$SEMANTIC_VERSION" ] || [ "$SEMANTIC_VERSION" = "null" ]; then
+            echo "⚠️  Warning: Semantic version generation failed or returned empty"
+            echo "This may be due to:"
+            echo "  - No conventional commits found"
+            echo "  - Missing or invalid semver configuration"
+            echo "  - Git history issues"
+            echo "  - GitHub token permissions"
+            echo ""
+            echo "🔧 Troubleshooting steps:"
+            echo "1. Check commit message format (conventional commits)"
+            echo "2. Verify .github/semver.yaml configuration exists"
+            echo "3. Ensure GITHUB_TOKEN has proper permissions"
+            echo "4. Check git history and tags"
+            echo ""
+            echo "⚠️  Skipping release steps due to version generation failure"
+          else
+            echo "✅ Semantic version generated successfully: $SEMANTIC_VERSION"
+          fi
+          echo "======================================"
+      
+      - name: 🚨 Handle Semantic Version Failure
+        if: github.ref == 'refs/heads/main' && (steps.semver.outputs.semantic_version == '' || steps.semver.outputs.semantic_version == 'null')
+        run: |
+          echo "🚨 Semantic Version Generation Failed"
+          echo "===================================="
+          echo "The semantic version generation step failed or returned no version."
+          echo "This will prevent automatic release creation."
+          echo ""
+          echo "📋 Diagnostic Information:"
+          echo "  Repository: ${{ github.repository }}"
+          echo "  Branch: ${{ github.ref_name }}"
+          echo "  Commit: ${{ github.sha }}"
+          echo "  Actor: ${{ github.actor }}"
+          echo ""
+          echo "🔍 Common Causes:"
+          echo "1. No conventional commit messages found"
+          echo "2. Missing .github/semver.yaml configuration"
+          echo "3. Insufficient GitHub token permissions"
+          echo "4. Git repository state issues"
+          echo ""
+          echo "💡 Resolution Steps:"
+          echo "1. Use conventional commit format (feat:, fix:, etc.)"
+          echo "2. Create .github/semver.yaml if missing"
+          echo "3. Verify GITHUB_TOKEN permissions include 'contents: write'"
+          echo "4. Check git tags and repository history"
+          echo ""
+          echo "⚠️  Build succeeded but release creation will be skipped"
+      
+      - name: 🏷️ Create Git Tag for Release
+        if: github.ref == 'refs/heads/main' && steps.semver.outputs.semantic_version != ''
+        run: |
+          set -e
+          SEMANTIC_VERSION="${{ steps.semver.outputs.semantic_version }}"
+          TAG_NAME="v${SEMANTIC_VERSION}"
+          
+          echo "🏷️ Creating Git Tag for Release"
+          echo "==============================="
+          echo "Semantic Version: $SEMANTIC_VERSION"
+          echo "Tag Name: $TAG_NAME"
+          echo "Target Commit: ${{ github.sha }}"
+          echo ""
+          
+          # Configure git user for tagging
+          echo "⚙️ Configuring Git user for automated tagging..."
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Check if tag already exists
+          echo "🔍 Checking for existing tag: $TAG_NAME"
+          
+          if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
+            echo "⚠️  Tag $TAG_NAME already exists, performing conflict resolution..."
+            
+            EXISTING_TAG_COMMIT=$(git rev-list -n 1 "$TAG_NAME")
+            CURRENT_COMMIT=$(git rev-parse HEAD)
+            
+            echo "📊 Tag Conflict Analysis:"
+            echo "  Existing tag commit: $EXISTING_TAG_COMMIT"
+            echo "  Current commit: $CURRENT_COMMIT"
+            
+            if [ "$EXISTING_TAG_COMMIT" = "$CURRENT_COMMIT" ]; then
+              echo "✅ Tag $TAG_NAME already points to current commit, no action needed"
+            else
+              echo "❌ Tag conflict detected - tag points to different commit"
+              echo "This indicates a versioning issue that needs manual resolution"
+              exit 1
+            fi
+          else
+            echo "🚀 Creating new tag: $TAG_NAME"
+            
+            # Create the tag with error handling
+            if git tag -a "$TAG_NAME" -m "Release $TAG_NAME - Automated release from CI pipeline"; then
+              echo "✅ Tag created locally: $TAG_NAME"
+            else
+              echo "❌ Failed to create local tag: $TAG_NAME"
+              echo "This may be due to:"
+              echo "  - Git configuration issues"
+              echo "  - Insufficient permissions"
+              echo "  - Repository state problems"
+              exit 1
+            fi
+            
+            echo "📤 Pushing tag to remote repository..."
+            
+            # Push the tag to remote with retry logic
+            MAX_PUSH_RETRIES=3
+            PUSH_RETRY_COUNT=0
+            
+            while [ $PUSH_RETRY_COUNT -lt $MAX_PUSH_RETRIES ]; do
+              if git push origin "$TAG_NAME"; then
+                echo "✅ Successfully pushed tag to remote: $TAG_NAME"
+                break
+              else
+                PUSH_RETRY_COUNT=$((PUSH_RETRY_COUNT + 1))
+                echo "⚠️  Push attempt $PUSH_RETRY_COUNT failed"
+                
+                if [ $PUSH_RETRY_COUNT -lt $MAX_PUSH_RETRIES ]; then
+                  echo "⏳ Retrying push in 3 seconds..."
+                  sleep 3
+                else
+                  echo "❌ Failed to push tag after $MAX_PUSH_RETRIES attempts"
+                  echo "This may be due to:"
+                  echo "  - Network connectivity issues"
+                  echo "  - GitHub API rate limits"
+                  echo "  - Repository permissions"
+                  echo "  - Branch protection rules"
+                  
+                  # Clean up local tag on push failure
+                  echo "🧹 Cleaning up local tag due to push failure..."
+                  git tag -d "$TAG_NAME" || echo "Failed to delete local tag"
+                  exit 1
+                fi
+              fi
+            done
+          fi
+          
+          # Store tag information for subsequent steps
+          echo ""
+          echo "💾 Storing Tag Information for Release Steps"
+          echo "==========================================="
+          
+          echo "GIT_TAG=$TAG_NAME" >> $GITHUB_ENV
+          echo "SEMANTIC_VERSION=$SEMANTIC_VERSION" >> $GITHUB_ENV
+          
+          echo "✅ Environment variables updated:"
+          echo "  GIT_TAG: $TAG_NAME"
+          echo "  SEMANTIC_VERSION: $SEMANTIC_VERSION"
+      
+      - name: 🚨 Handle Git Tag Creation Failure
+        if: failure() && github.ref == 'refs/heads/main' && steps.semver.outputs.semantic_version != ''
+        run: |
+          echo "🚨 Git Tag Creation Failed"
+          echo "========================="
+          echo "The git tag creation step failed on the main branch."
+          echo "This will prevent automatic release creation."
+          echo ""
+          echo "📋 Failure Details:"
+          echo "  Repository: ${{ github.repository }}"
+          echo "  Branch: ${{ github.ref_name }}"
+          echo "  Semantic Version: ${{ steps.semver.outputs.semantic_version }}"
+          echo "  Target Commit: ${{ github.sha }}"
+          echo "  Failure Time: $(date)"
+          echo ""
+          echo "🔍 Common Causes:"
+          echo "1. Tag already exists with different commit"
+          echo "2. Insufficient permissions to create tags"
+          echo "3. Git configuration issues"
+          echo "4. Network connectivity problems"
+          echo "5. Repository protection rules"
+          echo ""
+          echo "💡 Resolution Steps:"
+          echo "1. Check if tag already exists: git tag -l 'v${{ steps.semver.outputs.semantic_version }}'"
+          echo "2. Verify GitHub token has 'contents: write' permission"
+          echo "3. Check repository settings for tag protection rules"
+          echo "4. Manually create tag if needed: git tag -a 'v${{ steps.semver.outputs.semantic_version }}' -m 'Release v${{ steps.semver.outputs.semantic_version }}'"
+          echo "5. Push tag manually: git push origin 'v${{ steps.semver.outputs.semantic_version }}'"
+          echo ""
+          echo "🔧 Manual Recovery:"
+          echo "If automatic tag creation continues to fail, you can:"
+          echo "1. Create the tag manually using the commands above"
+          echo "2. Create a GitHub release manually at: https://github.com/${{ github.repository }}/releases/new"
+          echo "3. Use tag: v${{ steps.semver.outputs.semantic_version }}"
+          echo "4. Attach the built artifact if available"
+          echo ""
+          echo "⚠️  Build succeeded but release creation will be skipped"
+      
+      - name: 🚀 Create GitHub Release
+        if: github.ref == 'refs/heads/main' && env.GIT_TAG != '' && env.SEMANTIC_VERSION != ''
+        id: create_release
+        run: |
+          set -e
+          
+          TAG_NAME="${{ env.GIT_TAG }}"
+          SEMANTIC_VERSION="${{ env.SEMANTIC_VERSION }}"
+          RELEASE_NAME="AudioCap v${SEMANTIC_VERSION}"
+          
+          echo "🚀 Creating GitHub Release"
+          echo "=========================="
+          echo "Release Name: $RELEASE_NAME"
+          echo "Tag: $TAG_NAME"
+          echo "Target Commit: ${{ github.sha }}"
+          echo "Repository: ${{ github.repository }}"
+          echo ""
+          
+          # Generate release notes from recent commits
+          echo "📝 Generating Release Notes"
+          echo "=========================="
+          
+          # Get the previous tag to generate changelog
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD~1 2>/dev/null || echo "")
+          
+          if [ -n "$PREVIOUS_TAG" ]; then
+            echo "📋 Previous tag found: $PREVIOUS_TAG"
+            echo "📊 Generating changelog from $PREVIOUS_TAG to HEAD..."
+            CHANGELOG=$(git log --pretty=format:"- %s" ${PREVIOUS_TAG}..HEAD | head -20)
+            COMMIT_COUNT=$(git rev-list --count ${PREVIOUS_TAG}..HEAD)
+            echo "📈 Commits since last release: $COMMIT_COUNT"
+          else
+            echo "📋 No previous tag found, using recent commits for changelog"
+            CHANGELOG=$(git log --pretty=format:"- %s" -10)
+            COMMIT_COUNT=$(git rev-list --count HEAD)
+            echo "📈 Total commits in repository: $COMMIT_COUNT"
+          fi
+          
+          echo ""
+          echo "📝 Generated changelog preview:"
+          echo "$CHANGELOG" | head -5
+          
+          # Create release body
+          echo ""
+          echo "📄 Creating Release Description"
+          echo "=============================="
+          
+          RELEASE_BODY="## AudioCap Release ${SEMANTIC_VERSION}
+
+This release contains the latest version of AudioCap, a macOS sample application demonstrating CoreAudio process tap functionality.
+
+### Changes
+${CHANGELOG}
+
+### Installation
+1. Download the AudioCap.zip file from the assets below
+2. Extract the application bundle
+3. Move AudioCap.app to your Applications folder
+4. Grant necessary permissions when prompted
+
+### Requirements
+- macOS 15.4 or later
+- Audio recording permissions
+
+### Build Information
+- Built with Xcode 15.4
+- Target: macOS 15.4+
+- Architecture: Universal (Apple Silicon + Intel)
+- Build Date: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
+- Commit: ${{ github.sha }}
+
+---
+*This release was automatically generated by GitHub Actions CI Pipeline*"
+
+          echo "✅ Release description prepared ($(echo "$RELEASE_BODY" | wc -l) lines)"
+          
+          # Create the release using GitHub CLI
+          echo ""
+          echo "🚀 Creating Release with GitHub CLI"
+          echo "==================================="
+          
+          # Check if release already exists
+          echo "🔍 Checking for existing release: $TAG_NAME"
+          
+          if gh release view "$TAG_NAME" >/dev/null 2>&1; then
+            echo "⚠️  Release $TAG_NAME already exists"
+            
+            # Get existing release info
+            EXISTING_RELEASE_ID=$(gh release view "$TAG_NAME" --json id --jq '.id')
+            EXISTING_RELEASE_URL=$(gh release view "$TAG_NAME" --json url --jq '.url')
+            
+            echo "📊 Existing Release Information:"
+            echo "  Release ID: $EXISTING_RELEASE_ID"
+            echo "  Release URL: $EXISTING_RELEASE_URL"
+            
+            echo "RELEASE_ID=$EXISTING_RELEASE_ID" >> $GITHUB_ENV
+            echo "RELEASE_UPLOAD_URL=https://uploads.github.com/repos/${{ github.repository }}/releases/$EXISTING_RELEASE_ID/assets" >> $GITHUB_ENV
+            echo "✅ Using existing release for artifact upload"
+          else
+            echo "🆕 Creating new release..."
+            
+            # Create new release with error handling and retry logic
+            MAX_RELEASE_RETRIES=3
+            RELEASE_RETRY_COUNT=0
+            
+            while [ $RELEASE_RETRY_COUNT -lt $MAX_RELEASE_RETRIES ]; do
+              if gh release create "$TAG_NAME" \
+                --title "$RELEASE_NAME" \
+                --notes "$RELEASE_BODY" \
+                --target "${{ github.sha }}"; then
+                echo "✅ Successfully created GitHub release: $RELEASE_NAME"
+                break
+              else
+                RELEASE_RETRY_COUNT=$((RELEASE_RETRY_COUNT + 1))
+                echo "⚠️  Release creation attempt $RELEASE_RETRY_COUNT failed"
+                
+                if [ $RELEASE_RETRY_COUNT -lt $MAX_RELEASE_RETRIES ]; then
+                  echo "⏳ Retrying release creation in 5 seconds..."
+                  sleep 5
+                else
+                  echo "❌ Failed to create GitHub release after $MAX_RELEASE_RETRIES attempts"
+                  echo "This may be due to:"
+                  echo "  - GitHub API rate limits or service issues"
+                  echo "  - Insufficient GitHub token permissions"
+                  echo "  - Network connectivity problems"
+                  echo "  - Repository settings or restrictions"
+                  echo ""
+                  echo "🔧 Manual recovery steps:"
+                  echo "1. Check GitHub service status"
+                  echo "2. Verify GITHUB_TOKEN permissions include 'contents: write'"
+                  echo "3. Manually create release at: https://github.com/${{ github.repository }}/releases/new"
+                  echo "4. Use tag: $TAG_NAME"
+                  echo "5. Attach artifact manually if needed"
+                  exit 1
+                fi
+              fi
+            done
+            
+            # Get the created release info
+            RELEASE_ID=$(gh release view "$TAG_NAME" --json id --jq '.id')
+            RELEASE_URL=$(gh release view "$TAG_NAME" --json url --jq '.url')
+            
+            echo "📊 New Release Information:"
+            echo "  Release ID: $RELEASE_ID"
+            echo "  Release URL: $RELEASE_URL"
+            
+            echo "RELEASE_ID=$RELEASE_ID" >> $GITHUB_ENV
+            echo "RELEASE_UPLOAD_URL=https://uploads.github.com/repos/${{ github.repository }}/releases/$RELEASE_ID/assets" >> $GITHUB_ENV
+          fi
+          
+          # Store release information for artifact upload
+          echo ""
+          echo "💾 Storing Release Information"
+          echo "============================="
+          
+          echo "RELEASE_TAG=$TAG_NAME" >> $GITHUB_ENV
+          echo "RELEASE_NAME=$RELEASE_NAME" >> $GITHUB_ENV
+          
+          echo "✅ Release environment variables set:"
+          echo "  RELEASE_TAG: $TAG_NAME"
+          echo "  RELEASE_NAME: $RELEASE_NAME"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 🚨 Handle GitHub Release Creation Failure
+        if: failure() && github.ref == 'refs/heads/main' && env.GIT_TAG != ''
+        run: |
+          echo "🚨 GitHub Release Creation Failed"
+          echo "================================"
+          echo "The GitHub release creation step failed."
+          echo "The git tag was created successfully, but the release could not be created."
+          echo ""
+          echo "📋 Failure Details:"
+          echo "  Repository: ${{ github.repository }}"
+          echo "  Git Tag: ${{ env.GIT_TAG }}"
+          echo "  Semantic Version: ${{ env.SEMANTIC_VERSION }}"
+          echo "  Target Commit: ${{ github.sha }}"
+          echo "  Failure Time: $(date)"
+          echo ""
+          echo "🔍 Common Causes:"
+          echo "1. GitHub API rate limits or service issues"
+          echo "2. Insufficient GitHub token permissions"
+          echo "3. Network connectivity problems"
+          echo "4. Release already exists with the same tag"
+          echo "5. Repository settings or restrictions"
+          echo ""
+          echo "💡 Resolution Steps:"
+          echo "1. Check GitHub service status at: https://www.githubstatus.com/"
+          echo "2. Verify GITHUB_TOKEN has 'contents: write' permission"
+          echo "3. Check if release already exists at: https://github.com/${{ github.repository }}/releases"
+          echo "4. Wait a few minutes and retry if rate limited"
+          echo "5. Check repository settings for release restrictions"
+          echo ""
+          echo "🔧 Manual Recovery:"
+          echo "Since the git tag was created successfully, you can:"
+          echo "1. Create the release manually at: https://github.com/${{ github.repository }}/releases/new"
+          echo "2. Select existing tag: ${{ env.GIT_TAG }}"
+          echo "3. Use release title: AudioCap v${{ env.SEMANTIC_VERSION }}"
+          echo "4. Add release notes describing the changes"
+          echo "5. Attach the built artifact if available: ${{ env.ARTIFACT_PATH }}"
+          echo ""
+          echo "🔗 Direct Links:"
+          echo "  Create Release: https://github.com/${{ github.repository }}/releases/new?tag=${{ env.GIT_TAG }}"
+          echo "  Existing Releases: https://github.com/${{ github.repository }}/releases"
+          echo "  Repository Tags: https://github.com/${{ github.repository }}/tags"
+          echo ""
+          echo "⚠️  Tag created successfully but release creation failed"
+      
+      - name: 📤 Upload Artifact to Release
+        if: github.ref == 'refs/heads/main' && env.RELEASE_TAG != '' && env.ARTIFACT_PATH != ''
+        run: |
+          set -e
+          
+          ARTIFACT_PATH="${{ env.ARTIFACT_PATH }}"
+          RELEASE_TAG="${{ env.RELEASE_TAG }}"
+          BUNDLE_VERSION="${{ env.BUNDLE_VERSION }}"
+          
+          echo "📤 Uploading Artifact to GitHub Release"
+          echo "======================================="
+          echo "Artifact Path: $ARTIFACT_PATH"
+          echo "Release Tag: $RELEASE_TAG"
+          echo "Bundle Version: $BUNDLE_VERSION"
+          echo "Repository: ${{ github.repository }}"
+          echo ""
+          
+          # Verify artifact exists
+          echo "🔍 Verifying Artifact Availability"
+          echo "=================================="
+          
+          if [ ! -f "$ARTIFACT_PATH" ]; then
+            echo "❌ Artifact file not found: $ARTIFACT_PATH"
+            echo ""
+            echo "📋 Current directory contents:"
+            ls -la
+            echo ""
+            echo "🔍 Searching for zip files:"
+            find . -name "*.zip" -type f 2>/dev/null || echo "No zip files found"
+            exit 1
+          fi
+          
+          # Get artifact information
+          ARTIFACT_SIZE=$(ls -lh "$ARTIFACT_PATH" | awk '{print $5}')
+          ARTIFACT_BYTES=$(stat -f%z "$ARTIFACT_PATH" 2>/dev/null || stat -c%s "$ARTIFACT_PATH" 2>/dev/null || echo "unknown")
+          
+          echo "✅ Artifact verified:"
+          echo "  File: $ARTIFACT_PATH"
+          echo "  Size: $ARTIFACT_SIZE ($ARTIFACT_BYTES bytes)"
+          
+          # Determine content type for the artifact
+          CONTENT_TYPE="application/zip"
+          
+          # Create a more descriptive filename for the release
+          RELEASE_FILENAME="AudioCap-v${BUNDLE_VERSION}-macOS.zip"
+          
+          echo ""
+          echo "📋 Upload Configuration"
+          echo "======================"
+          echo "Upload Filename: $RELEASE_FILENAME"
+          echo "Content Type: $CONTENT_TYPE"
+          echo "Target Release: $RELEASE_TAG"
+          
+          # Check if asset already exists in the release
+          echo ""
+          echo "🔍 Checking for Existing Assets"
+          echo "==============================="
+          
+          EXISTING_ASSETS=$(gh release view "$RELEASE_TAG" --json assets --jq '.assets[].name' 2>/dev/null || echo "")
+          
+          if [ -n "$EXISTING_ASSETS" ]; then
+            echo "📋 Existing assets in release:"
+            echo "$EXISTING_ASSETS" | sed 's/^/  - /'
+          else
+            echo "📋 No existing assets found in release"
+          fi
+          
+          if echo "$EXISTING_ASSETS" | grep -q "^$(basename "$ARTIFACT_PATH")$"; then
+            echo ""
+            echo "⚠️  Asset $(basename "$ARTIFACT_PATH") already exists in release"
+            echo "🗑️  Deleting existing asset before upload..."
+            
+            # Delete the existing asset
+            if gh release delete-asset "$RELEASE_TAG" "$(basename "$ARTIFACT_PATH")" --yes; then
+              echo "✅ Successfully deleted existing asset"
+            else
+              echo "⚠️  Failed to delete existing asset, but continuing with upload..."
+            fi
+          fi
+          
+          # Upload the artifact to the release
+          echo ""
+          echo "📤 Starting Artifact Upload"
+          echo "==========================="
+          
+          # Retry logic for upload
+          MAX_RETRIES=3
+          RETRY_COUNT=0
+          UPLOAD_START_TIME=$(date +%s)
+          
+          echo "🔄 Upload configuration:"
+          echo "  Max retries: $MAX_RETRIES"
+          echo "  Retry delay: 5 seconds"
+          echo ""
+          
+          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+            ATTEMPT_START_TIME=$(date +%s)
+            echo "🚀 Upload attempt $((RETRY_COUNT + 1))/$MAX_RETRIES..."
+            
+            if gh release upload "$RELEASE_TAG" "$ARTIFACT_PATH" --clobber; then
+              UPLOAD_END_TIME=$(date +%s)
+              UPLOAD_DURATION=$((UPLOAD_END_TIME - UPLOAD_START_TIME))
+              echo "✅ Successfully uploaded artifact to release"
+              echo "⏱️  Upload completed in ${UPLOAD_DURATION} seconds"
+              break
+            else
+              RETRY_COUNT=$((RETRY_COUNT + 1))
+              ATTEMPT_END_TIME=$(date +%s)
+              ATTEMPT_DURATION=$((ATTEMPT_END_TIME - ATTEMPT_START_TIME))
+              
+              echo "❌ Upload attempt $RETRY_COUNT failed (took ${ATTEMPT_DURATION}s)"
+              
+              if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+                echo "⏳ Retrying in 5 seconds..."
+                sleep 5
+              else
+                echo "❌ Failed to upload artifact after $MAX_RETRIES attempts"
+                echo "💡 This may be due to network issues or GitHub API rate limits"
+                exit 1
+              fi
+            fi
+          done
+          
+          # Verify the upload was successful
+          echo ""
+          echo "🔍 Verifying Upload Success"
+          echo "=========================="
+          
+          echo "📋 Fetching updated release information..."
+          UPLOADED_ASSETS=$(gh release view "$RELEASE_TAG" --json assets --jq '.assets[].name' 2>/dev/null || echo "")
+          
+          if echo "$UPLOADED_ASSETS" | grep -q "$(basename "$ARTIFACT_PATH")"; then
+            echo "✅ Upload verification successful"
+            
+            # Get asset download URL and additional info
+            ASSET_INFO=$(gh release view "$RELEASE_TAG" --json assets --jq ".assets[] | select(.name == \"$(basename "$ARTIFACT_PATH")\")")
+            DOWNLOAD_URL=$(echo "$ASSET_INFO" | jq -r '.browserDownloadUrl')
+            ASSET_SIZE_BYTES=$(echo "$ASSET_INFO" | jq -r '.size')
+            UPLOAD_TIME=$(echo "$ASSET_INFO" | jq -r '.createdAt')
+            
+            echo ""
+            echo "📊 Upload Verification Details:"
+            echo "  Asset Name: $(basename "$ARTIFACT_PATH")"
+            echo "  Asset Size: $ARTIFACT_SIZE ($ASSET_SIZE_BYTES bytes)"
+            echo "  Upload Time: $UPLOAD_TIME"
+            echo "  Download URL: $DOWNLOAD_URL"
+            
+            # Display final release information
+            echo ""
+            echo "🎉 Release Deployment Complete"
+            echo "============================="
+            echo "🏷️  Release: ${{ env.RELEASE_NAME }}"
+            echo "🔖 Tag: $RELEASE_TAG"
+            echo "📦 Artifact: $(basename "$ARTIFACT_PATH") ($ARTIFACT_SIZE)"
+            echo "🌐 Download: $DOWNLOAD_URL"
+            echo "📅 Completed: $(date)"
+            echo ""
+            echo "✅ AudioCap release successfully deployed to GitHub!"
+          else
+            echo "❌ Upload verification failed - asset not found in release"
+            echo ""
+            echo "📋 Available assets in release:"
+            if [ -n "$UPLOADED_ASSETS" ]; then
+              echo "$UPLOADED_ASSETS" | sed 's/^/  - /'
+            else
+              echo "  (no assets found)"
+            fi
+            echo ""
+            echo "🔍 Expected asset: $(basename "$ARTIFACT_PATH")"
+            exit 1
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 🚨 Handle Artifact Upload Failure
+        if: failure() && github.ref == 'refs/heads/main' && env.RELEASE_TAG != ''
+        run: |
+          echo "🚨 Artifact Upload Failed"
+          echo "========================="
+          echo "The artifact upload to GitHub release failed."
+          echo "The release was created successfully, but the artifact could not be attached."
+          echo ""
+          echo "📋 Failure Details:"
+          echo "  Repository: ${{ github.repository }}"
+          echo "  Release Tag: ${{ env.RELEASE_TAG }}"
+          echo "  Release Name: ${{ env.RELEASE_NAME }}"
+          echo "  Artifact Path: ${{ env.ARTIFACT_PATH }}"
+          echo "  Failure Time: $(date)"
+          echo ""
+          echo "🔍 Common Causes:"
+          echo "1. Network connectivity issues during upload"
+          echo "2. GitHub API rate limits or service issues"
+          echo "3. Artifact file not found or corrupted"
+          echo "4. Insufficient GitHub token permissions"
+          echo "5. File size exceeds GitHub limits (2GB max)"
+          echo ""
+          echo "💡 Resolution Steps:"
+          echo "1. Check GitHub service status at: https://www.githubstatus.com/"
+          echo "2. Verify artifact file exists and is not corrupted"
+          echo "3. Check file size is under GitHub's 2GB limit"
+          echo "4. Verify GITHUB_TOKEN has 'contents: write' permission"
+          echo "5. Wait a few minutes and retry if rate limited"
+          echo ""
+          echo "🔧 Manual Recovery:"
+          echo "Since the release was created successfully, you can:"
+          echo "1. Go to the release page: https://github.com/${{ github.repository }}/releases/tag/${{ env.RELEASE_TAG }}"
+          echo "2. Click 'Edit release'"
+          echo "3. Drag and drop the artifact file to attach it"
+          echo "4. Save the release"
+          echo ""
+          echo "📁 Artifact Information:"
+          if [ -f "${{ env.ARTIFACT_PATH }}" ]; then
+            ARTIFACT_SIZE=$(ls -lh "${{ env.ARTIFACT_PATH }}" | awk '{print $5}')
+            echo "  File: ${{ env.ARTIFACT_PATH }}"
+            echo "  Size: $ARTIFACT_SIZE"
+            echo "  Status: File exists and ready for manual upload"
+          else
+            echo "  File: ${{ env.ARTIFACT_PATH }}"
+            echo "  Status: File not found - may need to rebuild"
+          fi
+          echo ""
+          echo "🔗 Direct Links:"
+          echo "  Release Page: https://github.com/${{ github.repository }}/releases/tag/${{ env.RELEASE_TAG }}"
+          echo "  Edit Release: https://github.com/${{ github.repository }}/releases/edit/${{ env.RELEASE_TAG }}"
+          echo ""
+          echo "⚠️  Release created successfully but artifact upload failed"
+      
+      # Comprehensive failure handling and cleanup steps
+      - name: 🧹 Conditional Cleanup on Failure
+        if: failure()
+        run: |
+          echo "🧹 CI Pipeline Failure Cleanup"
+          echo "=============================="
+          echo "Timestamp: $(date)"
+          echo "Failed Job: ${{ github.job }}"
+          echo "Workflow Run: ${{ github.run_id }}"
+          echo "Current Step: ${{ env.CURRENT_STEP }}"
+          echo ""
+          
+          # Determine cleanup scope based on failure point
+          echo "🔍 Determining Cleanup Scope"
+          echo "============================"
+          
+          CLEANUP_SCOPE="basic"
+          
+          if [ -f test_output.log ] || [ "${{ env.CURRENT_STEP }}" = "test-execution" ]; then
+            CLEANUP_SCOPE="test-failure"
+            echo "📋 Test failure detected - performing test cleanup"
+          elif [ -f build_output.log ] || [ "${{ env.CURRENT_STEP }}" = "application-build" ]; then
+            CLEANUP_SCOPE="build-failure"
+            echo "📋 Build failure detected - performing build cleanup"
+          elif [ "${{ env.CURRENT_STEP }}" = "artifact-preparation" ]; then
+            CLEANUP_SCOPE="artifact-failure"
+            echo "📋 Artifact failure detected - performing artifact cleanup"
+          elif [ "${{ github.ref }}" = "refs/heads/main" ] && [ -n "${{ env.SEMANTIC_VERSION }}" ]; then
+            CLEANUP_SCOPE="release-failure"
+            echo "📋 Release failure detected - performing release cleanup"
+          else
+            echo "📋 General failure detected - performing basic cleanup"
+          fi
+          
+          echo ""
+          echo "🗑️  Executing Cleanup Operations"
+          echo "================================"
+          
+          # Basic cleanup (always performed)
+          echo "🧹 Basic cleanup operations..."
+          
+          # Preserve logs for analysis but clean up other temporary files
+          if [ "$CLEANUP_SCOPE" != "test-failure" ]; then
+            rm -f test_output.log 2>/dev/null || true
+            echo "  ✅ Removed test output log"
+          else
+            echo "  ⚠️  Preserving test output log for analysis"
+          fi
+          
+          if [ "$CLEANUP_SCOPE" != "build-failure" ]; then
+            rm -f build_output.log 2>/dev/null || true
+            echo "  ✅ Removed build output log"
+          else
+            echo "  ⚠️  Preserving build output log for analysis"
+          fi
+          
+          # Clean up temporary directories based on failure type
+          if [ "$CLEANUP_SCOPE" = "artifact-failure" ] || [ "$CLEANUP_SCOPE" = "release-failure" ]; then
+            echo "🗂️  Preserving distribution artifacts for manual recovery..."
+            if [ -d "dist" ]; then
+              echo "  ⚠️  Preserving dist/ directory for manual artifact recovery"
+            fi
+            if ls AudioCap-*.zip 1> /dev/null 2>&1; then
+              echo "  ⚠️  Preserving zip files for manual upload"
+            fi
+          else
+            # Safe to clean up artifacts for other failure types
+            if [ -d "dist" ]; then
+              echo "📁 Removing distribution directory..."
+              rm -rf dist
+              echo "  ✅ Removed dist/ directory"
+            fi
+            
+            # Clean up any zip files created
+            if ls AudioCap-*.zip 1> /dev/null 2>&1; then
+              find . -name "AudioCap-*.zip" -type f -delete 2>/dev/null || true
+              echo "  ✅ Removed zip artifacts"
+            fi
+          fi
+          
+          # Clean up Xcode derived data (safe for all failure types)
+          if [ -d ~/Library/Developer/Xcode/DerivedData ]; then
+            echo "🧹 Cleaning Xcode derived data..."
+            find ~/Library/Developer/Xcode/DerivedData -name "*AudioCap*" -type d -exec rm -rf {} + 2>/dev/null || true
+            echo "  ✅ Cleaned Xcode derived data"
+          fi
+          
+          # Clean up any temporary semver configuration if created
+          if [ -f ".github/semver.yaml" ] && [ "$CLEANUP_SCOPE" != "release-failure" ]; then
+            # Only remove if it was auto-generated (check for our signature comment)
+            if grep -q "Semantic Version Generator Configuration" .github/semver.yaml 2>/dev/null; then
+              echo "🗑️  Removing auto-generated semver configuration..."
+              rm -f .github/semver.yaml
+              echo "  ✅ Removed auto-generated semver config"
+            fi
+          fi
+          
+          # Cleanup git state if tag creation failed
+          if [ "$CLEANUP_SCOPE" = "release-failure" ] && [ -n "${{ env.GIT_TAG }}" ]; then
+            echo "🏷️  Checking for orphaned git tags..."
+            if git tag -l "${{ env.GIT_TAG }}" | grep -q "${{ env.GIT_TAG }}"; then
+              # Check if tag was pushed to remote
+              if git ls-remote --tags origin | grep -q "${{ env.GIT_TAG }}"; then
+                echo "  ⚠️  Tag ${{ env.GIT_TAG }} exists on remote - preserving"
+              else
+                echo "  🗑️  Removing local orphaned tag: ${{ env.GIT_TAG }}"
+                git tag -d "${{ env.GIT_TAG }}" 2>/dev/null || true
+                echo "  ✅ Removed orphaned local tag"
+              fi
+            fi
+          fi
+          
+          echo ""
+          echo "📊 Cleanup Summary"
+          echo "=================="
+          echo "Cleanup Scope: $CLEANUP_SCOPE"
+          echo "Preserved Files:"
+          
+          # List preserved files for debugging
+          if [ -f test_output.log ]; then
+            echo "  📄 test_output.log (for failure analysis)"
+          fi
+          if [ -f build_output.log ]; then
+            echo "  📄 build_output.log (for failure analysis)"
+          fi
+          if [ -d "dist" ]; then
+            echo "  📁 dist/ directory (for manual recovery)"
+          fi
+          if ls AudioCap-*.zip 1> /dev/null 2>&1; then
+            echo "  📦 AudioCap-*.zip files (for manual upload)"
+          fi
+          
+          echo ""
+          echo "✅ Conditional cleanup completed for: $CLEANUP_SCOPE"
+      
+      - name: 📊 Failure Analysis and Reporting
+        if: failure()
+        run: |
+          echo "📊 CI Pipeline Failure Analysis"
+          echo "==============================="
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Job: ${{ github.job }}"
+          echo "Run ID: ${{ github.run_id }}"
+          echo "Run Number: ${{ github.run_number }}"
+          echo "Failure Time: $(date)"
+          echo ""
+          
+          # Determine likely failure cause based on step context
+          echo "🔍 Failure Context Analysis:"
+          echo "============================"
+          
+          # Check for common failure patterns with enhanced analysis
+          if [ -f test_output.log ]; then
+            echo "📋 Test-related failure detected"
+            echo "============================"
+            
+            # Analyze test output for specific failure types
+            TEST_FAILURE_TYPE="unknown"
+            
+            if grep -q "Build failed" test_output.log; then
+              TEST_FAILURE_TYPE="compilation"
+              echo "🔧 Failure Type: Compilation errors during test build"
+              echo "Most likely causes:"
+              echo "  - Syntax errors in Swift code"
+              echo "  - Missing imports or frameworks"
+              echo "  - Type mismatches or API changes"
+              echo "  - Xcode version compatibility issues"
+            elif grep -q "FAIL.*AudioCapTests" test_output.log; then
+              TEST_FAILURE_TYPE="unit-tests"
+              echo "🧪 Failure Type: Unit test failures"
+              echo "Most likely causes:"
+              echo "  - Logic errors in application code"
+              echo "  - Test assertions not matching expected behavior"
+              echo "  - Mock audio system configuration issues"
+              echo "  - Environment variable problems (AUDIOCAP_TEST_MODE, AUDIOCAP_MOCK_AUDIO)"
+            elif grep -q "FAIL.*AudioCapUITests" test_output.log; then
+              TEST_FAILURE_TYPE="ui-tests"
+              echo "🖥️  Failure Type: UI test failures"
+              echo "Most likely causes:"
+              echo "  - UI element changes breaking test selectors"
+              echo "  - Timing issues in UI interactions"
+              echo "  - SwiftUI view hierarchy changes"
+              echo "  - macOS permission dialog interference"
+            elif grep -q "timeout" test_output.log; then
+              TEST_FAILURE_TYPE="timeout"
+              echo "⏱️  Failure Type: Test execution timeout"
+              echo "Most likely causes:"
+              echo "  - Infinite loops in test or application code"
+              echo "  - Deadlocks in audio processing threads"
+              echo "  - System resource exhaustion"
+              echo "  - Network or I/O blocking operations"
+            else
+              echo "❓ Failure Type: General test failure"
+              echo "Most likely causes:"
+              echo "  - Test environment setup issues"
+              echo "  - Missing test dependencies"
+              echo "  - System configuration problems"
+              echo "  - Xcode test runner issues"
+            fi
+            
+            echo ""
+            echo "🚨 Specific Test Failures:"
+            echo "========================="
+            
+            # Show failed tests with more context
+            if grep -q "FAIL" test_output.log; then
+              echo "Failed test cases:"
+              grep "FAIL" test_output.log | head -10 | sed 's/^/  ❌ /'
+            fi
+            
+            # Show compilation errors if present
+            if grep -q "error:" test_output.log; then
+              echo ""
+              echo "Compilation errors:"
+              grep "error:" test_output.log | head -5 | sed 's/^/  🔴 /'
+            fi
+            
+            # Show specific recommendations based on failure type
+            echo ""
+            echo "💡 Specific Recommendations for $TEST_FAILURE_TYPE failures:"
+            case $TEST_FAILURE_TYPE in
+              "compilation")
+                echo "  1. Check Swift syntax and fix compilation errors"
+                echo "  2. Verify all imports are correct and available"
+                echo "  3. Update code for Xcode 15.4 compatibility"
+                echo "  4. Check for deprecated API usage"
+                ;;
+              "unit-tests")
+                echo "  1. Run tests locally with: xcodebuild test -project AudioCap.xcodeproj -scheme AudioCap"
+                echo "  2. Check AUDIOCAP_TEST_MODE=1 and AUDIOCAP_MOCK_AUDIO=1 are set"
+                echo "  3. Review recent changes to AudioProcessController and ProcessTap"
+                echo "  4. Verify mock audio system is working correctly"
+                ;;
+              "ui-tests")
+                echo "  1. Update UI test selectors if SwiftUI views changed"
+                echo "  2. Add delays for UI animations and transitions"
+                echo "  3. Check for macOS permission dialogs interfering with tests"
+                echo "  4. Verify UI tests work in headless CI environment"
+                ;;
+              "timeout")
+                echo "  1. Check for infinite loops in audio processing code"
+                echo "  2. Review thread synchronization in ProcessTap implementation"
+                echo "  3. Add timeout handling to long-running operations"
+                echo "  4. Monitor system resource usage during tests"
+                ;;
+              *)
+                echo "  1. Check test environment setup and dependencies"
+                echo "  2. Verify Xcode and macOS version compatibility"
+                echo "  3. Review recent changes that might affect tests"
+                echo "  4. Run tests locally to reproduce the issue"
+                ;;
+            esac
+          fi
+          
+          if [ -f build_output.log ]; then
+            echo "📋 Build-related failure detected"
+            echo "============================="
+            
+            # Analyze build output for specific failure types
+            BUILD_FAILURE_TYPE="unknown"
+            
+            if grep -q "Code Sign error" build_output.log; then
+              BUILD_FAILURE_TYPE="code-signing"
+              echo "🔐 Failure Type: Code signing errors"
+              echo "Most likely causes:"
+              echo "  - Missing or invalid code signing certificates"
+              echo "  - Provisioning profile issues"
+              echo "  - Entitlements configuration problems"
+              echo "  - Keychain access issues in CI environment"
+            elif grep -q "linker command failed" build_output.log || grep -q "ld:" build_output.log; then
+              BUILD_FAILURE_TYPE="linking"
+              echo "🔗 Failure Type: Linking errors"
+              echo "Most likely causes:"
+              echo "  - Missing framework dependencies"
+              echo "  - Incorrect library search paths"
+              echo "  - Architecture mismatch (Intel vs Apple Silicon)"
+              echo "  - Duplicate symbol definitions"
+            elif grep -q "Swift Compiler Error" build_output.log || grep -q "error:.*swift" build_output.log; then
+              BUILD_FAILURE_TYPE="swift-compilation"
+              echo "🦉 Failure Type: Swift compilation errors"
+              echo "Most likely causes:"
+              echo "  - Swift syntax errors or type mismatches"
+              echo "  - API compatibility issues with macOS 14.4+"
+              echo "  - SwiftUI view compilation problems"
+              echo "  - Generic type resolution failures"
+            elif grep -q "warning:" build_output.log && grep -c "warning:" build_output.log | awk '{print $1}' | head -1 | xargs test 0 -lt; then
+              BUILD_FAILURE_TYPE="warnings-as-errors"
+              echo "⚠️  Failure Type: Warnings treated as errors"
+              echo "Most likely causes:"
+              echo "  - Deprecated API usage warnings"
+              echo "  - Unused variable or function warnings"
+              echo "  - Type conversion warnings"
+              echo "  - Build settings treating warnings as errors"
+            else
+              echo "❓ Failure Type: General build failure"
+              echo "Most likely causes:"
+              echo "  - Project configuration issues"
+              echo "  - Xcode version compatibility problems"
+              echo "  - System resource constraints"
+              echo "  - File system or permission issues"
+            fi
+            
+            echo ""
+            echo "🚨 Specific Build Errors:"
+            echo "========================"
+            
+            # Show compilation errors with more context
+            if grep -q "error:" build_output.log; then
+              echo "Compilation errors:"
+              grep "error:" build_output.log | head -10 | sed 's/^/  🔴 /'
+            fi
+            
+            # Show linker errors if present
+            if grep -q "ld:" build_output.log; then
+              echo ""
+              echo "Linker errors:"
+              grep "ld:" build_output.log | head -5 | sed 's/^/  🔗 /'
+            fi
+            
+            # Show warnings that might be treated as errors
+            if grep -q "warning:" build_output.log; then
+              WARNING_COUNT=$(grep -c "warning:" build_output.log)
+              echo ""
+              echo "Build warnings ($WARNING_COUNT total):"
+              grep "warning:" build_output.log | head -5 | sed 's/^/  ⚠️  /'
+              if [ "$WARNING_COUNT" -gt 5 ]; then
+                echo "  ... and $((WARNING_COUNT - 5)) more warnings"
+              fi
+            fi
+            
+            # Show specific recommendations based on failure type
+            echo ""
+            echo "💡 Specific Recommendations for $BUILD_FAILURE_TYPE failures:"
+            case $BUILD_FAILURE_TYPE in
+              "code-signing")
+                echo "  1. Check code signing settings in Xcode project"
+                echo "  2. Verify entitlements in AudioCap.entitlements are correct"
+                echo "  3. Ensure manual code signing is configured properly"
+                echo "  4. Check if certificates are available in CI environment"
+                ;;
+              "linking")
+                echo "  1. Verify all required frameworks are linked in project settings"
+                echo "  2. Check that CoreAudio, AVFoundation, and AudioToolbox are included"
+                echo "  3. Ensure build architecture matches target (Universal Binary)"
+                echo "  4. Review framework search paths in build settings"
+                ;;
+              "swift-compilation")
+                echo "  1. Fix Swift syntax errors shown above"
+                echo "  2. Check for API changes in macOS 14.4+ that affect the code"
+                echo "  3. Verify SwiftUI view syntax is correct for current version"
+                echo "  4. Update deprecated API usage to modern alternatives"
+                ;;
+              "warnings-as-errors")
+                echo "  1. Fix all warnings shown above"
+                echo "  2. Update deprecated API usage"
+                echo "  3. Remove unused variables and functions"
+                echo "  4. Consider adjusting build settings to allow warnings temporarily"
+                ;;
+              *)
+                echo "  1. Check Xcode project configuration and build settings"
+                echo "  2. Verify all source files are included in the target"
+                echo "  3. Clean build folder and try again"
+                echo "  4. Check for file system or permission issues"
+                ;;
+            esac
+          fi
+          
+          # Check for environment issues
+          echo "🔧 Environment Status:"
+          echo "====================="
+          echo "Xcode version: $(xcodebuild -version 2>/dev/null | head -1 || echo 'Not available')"
+          echo "Swift version: $(swift --version 2>/dev/null | head -1 || echo 'Not available')"
+          echo "macOS version: $(sw_vers -productVersion 2>/dev/null || echo 'Unknown')"
+          echo "Available disk space: $(df -h . | tail -1 | awk '{print $4}' || echo 'Unknown')"
+          echo ""
+          
+          # Provide actionable recommendations
+          echo "💡 Recommended Actions:"
+          echo "======================"
+          echo "1. Review the detailed error logs above"
+          echo "2. Check recent commits for breaking changes"
+          echo "3. Verify all tests pass locally before pushing"
+          echo "4. Ensure Xcode project settings are correct"
+          echo "5. Check for any missing dependencies or frameworks"
+          echo "6. Verify environment variables are set correctly"
+          echo ""
+          
+          # Check if this is a recurring failure
+          echo "📈 Failure Pattern Analysis:"
+          echo "============================"
+          echo "Current run number: ${{ github.run_number }}"
+          echo "To check for recurring issues, review recent workflow runs at:"
+          echo "https://github.com/${{ github.repository }}/actions"
+          echo ""
+          
+          echo "🔗 Useful Links for Debugging:"
+          echo "=============================="
+          echo "- Workflow run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo "- Commit details: https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
+          echo "- Repository issues: https://github.com/${{ github.repository }}/issues"
+          echo "- AudioCap documentation: https://github.com/${{ github.repository }}#readme"
+      
+      - name: 🚨 Critical Failure Notification
+        if: failure() && github.ref == 'refs/heads/main'
+        run: |
+          echo "🚨 CRITICAL: Main Branch Build Failure"
+          echo "======================================"
+          echo "⚠️  The main branch build has failed!"
+          echo "This requires immediate attention as it may block releases."
+          echo ""
+          echo "📊 Failure Details:"
+          echo "  Repository: ${{ github.repository }}"
+          echo "  Branch: main"
+          echo "  Commit: ${{ github.sha }}"
+          echo "  Author: ${{ github.actor }}"
+          echo "  Time: $(date)"
+          echo "  Run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo ""
+          echo "🔧 Immediate Actions Required:"
+          echo "1. Investigate the failure cause immediately"
+          echo "2. Fix the issue or revert the problematic commit"
+          echo "3. Ensure all tests pass before merging to main"
+          echo "4. Consider implementing additional pre-merge checks"
+          echo ""
+          echo "💡 Prevention Tips:"
+          echo "1. Run tests locally before pushing changes"
+          echo "2. Use feature branches for development"
+          echo "3. Enable branch protection rules"
+          echo "4. Set up pre-commit hooks for code quality"
+          echo ""
+          echo "🔔 This failure notification is for main branch builds only"
+      
+      - name: 📊 Pipeline Execution Summary
+        if: always()
+        run: |
+          echo "📊 CI Pipeline Execution Summary"
+          echo "==============================="
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Job: ${{ github.job }}"
+          echo "Run ID: ${{ github.run_id }}"
+          echo "Run Number: ${{ github.run_number }}"
+          echo "Execution Time: $(date)"
+          echo ""
+          
+          # Calculate total pipeline duration
+          if [ -n "${{ env.STEP_START_TIME }}" ]; then
+            PIPELINE_END_TIME=$(date +%s)
+            TOTAL_DURATION=$(($PIPELINE_END_TIME - ${{ env.STEP_START_TIME }}))
+            echo "⏱️  Total Pipeline Duration: ${TOTAL_DURATION} seconds"
+          else
+            echo "⏱️  Total Pipeline Duration: Unable to calculate"
+          fi
+          
+          echo ""
+          echo "📋 Step Execution Status:"
+          echo "========================"
+          
+          # Determine overall job status
+          JOB_STATUS="${{ job.status }}"
+          
+          if [ "$JOB_STATUS" = "success" ]; then
+            echo "✅ Overall Status: SUCCESS"
+            echo ""
+            echo "🎉 All pipeline steps completed successfully!"
+            echo ""
+            echo "📈 Completed Steps:"
+            echo "  ✅ Repository checkout"
+            echo "  ✅ Workflow context display"
+            echo "  ✅ Xcode environment setup"
+            echo "  ✅ Environment configuration"
+            echo "  ✅ Test suite execution"
+            echo "  ✅ Application build"
+            echo "  ✅ Artifact preparation"
+            
+            # Add release steps if on main branch
+            if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+              echo "  ✅ Semantic version generation"
+              echo "  ✅ Git tag creation"
+              echo "  ✅ GitHub release creation"
+              echo "  ✅ Artifact upload"
+              echo ""
+              echo "🚀 Release Information:"
+              if [ -n "${{ env.SEMANTIC_VERSION }}" ]; then
+                echo "  Version: ${{ env.SEMANTIC_VERSION }}"
+                echo "  Tag: ${{ env.GIT_TAG }}"
+                echo "  Release: ${{ env.RELEASE_NAME }}"
+                echo "  Artifact: ${{ env.ARTIFACT_PATH }}"
+              else
+                echo "  No release created (version generation may have failed)"
+              fi
+            else
+              echo ""
+              echo "ℹ️  Release steps skipped (not main branch)"
+            fi
+            
+            echo ""
+            echo "📦 Build Artifacts:"
+            if [ -n "${{ env.ARTIFACT_PATH }}" ]; then
+              echo "  Application Bundle: ${{ env.APP_BUNDLE_PATH }}"
+              echo "  Distribution Archive: ${{ env.ARTIFACT_PATH }}"
+              echo "  Bundle Version: ${{ env.BUNDLE_VERSION }}"
+            else
+              echo "  No artifacts generated"
+            fi
+            
+          elif [ "$JOB_STATUS" = "failure" ]; then
+            echo "❌ Overall Status: FAILED"
+            echo ""
+            echo "🚨 Pipeline execution failed!"
+            echo ""
+            echo "📋 Failure Analysis:"
+            
+            # Determine which step likely failed based on available logs
+            if [ -f test_output.log ]; then
+              echo "  ❌ Test execution step failed"
+              echo "  📄 Test output log available for analysis"
+            elif [ -f build_output.log ]; then
+              echo "  ❌ Build step failed"
+              echo "  📄 Build output log available for analysis"
+            else
+              echo "  ❌ Early pipeline step failed"
+              echo "  📄 Check step logs above for details"
+            fi
+            
+            echo ""
+            echo "🔧 Next Steps:"
+            echo "  1. Review the detailed error logs above"
+            echo "  2. Fix the identified issues"
+            echo "  3. Test changes locally before pushing"
+            echo "  4. Re-run the pipeline"
+            
+          elif [ "$JOB_STATUS" = "cancelled" ]; then
+            echo "⏹️  Overall Status: CANCELLED"
+            echo ""
+            echo "ℹ️  Pipeline execution was cancelled"
+            echo "This may be due to:"
+            echo "  - Manual cancellation by user"
+            echo "  - Timeout exceeded"
+            echo "  - System resource constraints"
+            echo "  - Newer workflow run triggered"
+            
+          else
+            echo "❓ Overall Status: $JOB_STATUS"
+            echo ""
+            echo "ℹ️  Pipeline completed with status: $JOB_STATUS"
+          fi
+          
+          echo ""
+          echo "🔗 Useful Links:"
+          echo "==============="
+          echo "Workflow Run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo "Commit Details: https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
+          echo "Repository: https://github.com/${{ github.repository }}"
+          
+          if [ "${{ github.ref }}" = "refs/heads/main" ] && [ "$JOB_STATUS" = "success" ] && [ -n "${{ env.RELEASE_TAG }}" ]; then
+            echo "Release Page: https://github.com/${{ github.repository }}/releases/tag/${{ env.RELEASE_TAG }}"
+          fi
+          
+          echo ""
+          echo "📅 Summary Generated: $(date)"
+          echo "==============================="o "- Always test changes locally before pushing to main"
+          echo "- Use feature branches and pull requests for changes"
+          echo "- Enable branch protection rules requiring status checks"
+          echo "- Set up automated testing on pull requests"
+      
+      - name: ✅ Success Summary
+        if: success()
+        run: |
+          echo "✅ CI Pipeline Execution Successful"
+          echo "==================================="
+          echo "🎉 All steps completed successfully!"
+          echo ""
+          echo "📊 Execution Summary:"
+          echo "  Repository: ${{ github.repository }}"
+          echo "  Branch: ${{ github.ref_name }}"
+          echo "  Commit: ${{ github.sha }}"
+          echo "  Author: ${{ github.actor }}"
+          echo "  Completed: $(date)"
+          echo "  Run ID: ${{ github.run_id }}"
+          echo ""
+          
+          # Show what was accomplished
+          echo "✅ Completed Tasks:"
+          echo "  📥 Code checkout and environment setup"
+          echo "  🧪 Test suite execution (all tests passed)"
+          echo "  🏗️  Application build (Release configuration)"
+          echo "  📦 Artifact preparation and validation"
+          
+          # Show branch-specific accomplishments
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            echo "  🏷️  Semantic version generation"
+            echo "  🔖 Git tag creation"
+            echo "  🚀 GitHub release creation"
+            echo "  📤 Artifact upload to release"
+            echo ""
+            echo "🎉 Release Information:"
+            if [ -n "${{ env.SEMANTIC_VERSION }}" ]; then
+              echo "  Version: ${{ env.SEMANTIC_VERSION }}"
+              echo "  Tag: ${{ env.GIT_TAG }}"
+              echo "  Release: ${{ env.RELEASE_NAME }}"
+            fi
+            if [ -n "${{ env.ARTIFACT_PATH }}" ]; then
+              echo "  Artifact: ${{ env.ARTIFACT_PATH }}"
+            fi
+          else
+            echo ""
+            echo "📋 Branch Build Information:"
+            echo "  This was a feature branch build"
+            echo "  No release was created (main branch only)"
+            echo "  All quality checks passed successfully"
+          fi
+          
+          echo ""
+          echo "🔗 Useful Links:"
+          echo "  Workflow run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo "  Commit: https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
+          if [ "${{ github.ref }}" = "refs/heads/main" ] && [ -n "${{ env.GIT_TAG }}" ]; then
+            echo "  Release: https://github.com/${{ github.repository }}/releases/tag/${{ env.GIT_TAG }}"
+          fi
+          echo ""
+          echo "🚀 AudioCap CI Pipeline completed successfully!"

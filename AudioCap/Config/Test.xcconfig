@@ -1,0 +1,31 @@
+//
+//  Test.xcconfig
+//  AudioCap Test Configuration
+//
+//  Configuration settings for test environments
+//
+
+#include "Main.xcconfig"
+
+// Test-specific build settings
+ENABLE_TESTABILITY = YES
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) TESTING
+OTHER_SWIFT_FLAGS = $(inherited) -D TESTING
+
+// Code coverage settings
+CLANG_ENABLE_CODE_COVERAGE = YES
+GCC_GENERATE_TEST_COVERAGE_FILES = YES
+GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES
+
+// Test timeout and performance settings
+SWIFT_COMPILATION_MODE = singlefile
+SWIFT_OPTIMIZATION_LEVEL = -Onone
+
+// Disable TCC SPI for testing to avoid permission dependencies
+ENABLE_TCC_SPI = NO
+
+// Test-specific preprocessor definitions
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) TESTING=1 MOCK_AUDIO=1
+
+// Memory debugging for tests
+ENABLE_SCUDO = YES
