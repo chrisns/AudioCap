@@ -61,7 +61,6 @@
 		F47AD9482BF5B61F005B75AC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F47AD94A2BF5B61F005B75AC /* AudioCap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioCap.entitlements; sourceTree = "<group>"; };
 		F4A1B0052C4D8A3000000001 /* AudioCapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioCapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4A1B0062C4D8A4000000001 /* AudioCapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioCapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4A1B0222C4D8C0000000001 /* BaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
 		F4A1B0242C4D8C2000000001 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		F4A1B0252C4D8C3000000001 /* AudioTestUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTestUtilities.swift; sourceTree = "<group>"; };
@@ -118,7 +117,6 @@
 			children = (
 				F47AD9402BF5B61E005B75AC /* AudioCap */,
 				F4A1B0092C4D8A7000000001 /* AudioCapTests */,
-				F4A1B00A2C4D8A8000000001 /* AudioCapUITests */,
 				F47AD93F2BF5B61E005B75AC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -128,7 +126,6 @@
 			children = (
 				F47AD93E2BF5B61E005B75AC /* AudioCap.app */,
 				F4A1B0052C4D8A3000000001 /* AudioCapTests.xctest */,
-				F4A1B0062C4D8A4000000001 /* AudioCapUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -174,13 +171,7 @@
 			path = AudioCapTests;
 			sourceTree = "<group>";
 		};
-		F4A1B00A2C4D8A8000000001 /* AudioCapUITests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AudioCapUITests;
-			sourceTree = "<group>";
-		};
+
 		F4A1B00B2C4D8A9000000001 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,24 +267,7 @@
 			productReference = F4A1B0052C4D8A3000000001 /* AudioCapTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		F4A1B0172C4D8B5000000001 /* AudioCapUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F4A1B0182C4D8B6000000001 /* Build configuration list for PBXNativeTarget "AudioCapUITests" */;
-			buildPhases = (
-				F4A1B0192C4D8B7000000001 /* Sources */,
-				F4A1B0082C4D8A6000000001 /* Frameworks */,
-				F4A1B01A2C4D8B8000000001 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F4A1B01B2C4D8B9000000001 /* PBXTargetDependency */,
-			);
-			name = AudioCapUITests;
-			productName = AudioCapUITests;
-			productReference = F4A1B0062C4D8A4000000001 /* AudioCapUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
+
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -308,10 +282,6 @@
 						CreatedOnToolsVersion = 15.3;
 					};
 					F4A1B0122C4D8B0000000001 = {
-						CreatedOnToolsVersion = 15.3;
-						TestTargetID = F47AD93D2BF5B61E005B75AC;
-					};
-					F4A1B0172C4D8B5000000001 = {
 						CreatedOnToolsVersion = 15.3;
 						TestTargetID = F47AD93D2BF5B61E005B75AC;
 					};
@@ -335,7 +305,6 @@
 			targets = (
 				F47AD93D2BF5B61E005B75AC /* AudioCap */,
 				F4A1B0122C4D8B0000000001 /* AudioCapTests */,
-				F4A1B0172C4D8B5000000001 /* AudioCapUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -634,42 +603,7 @@
 			};
 			name = Release;
 		};
-		F4A1B01F2C4D8BD000000001 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.audiocap.AudioCapUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = AudioCap;
-			};
-			name = Debug;
-		};
-		F4A1B0202C4D8BE000000001 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.audiocap.AudioCapUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = AudioCap;
-			};
-			name = Release;
-		};
+
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -700,15 +634,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F4A1B0182C4D8B6000000001 /* Build configuration list for PBXNativeTarget "AudioCapUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F4A1B01F2C4D8BD000000001 /* Debug */,
-				F4A1B0202C4D8BE000000001 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
+
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */

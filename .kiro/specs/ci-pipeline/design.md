@@ -65,8 +65,7 @@ graph TD
 
 **Test Execution Strategy**:
 - Run all test suites using `xcodebuild test`
-- Use the `AudioCap` scheme for comprehensive testing
-- Include both unit tests (`AudioCapTests`) and UI tests (`AudioCapUITests`)
+- Use the `AudioCap` scheme for testing
 
 **Command Structure**:
 ```bash

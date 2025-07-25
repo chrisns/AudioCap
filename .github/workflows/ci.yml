@@ -44,7 +44,7 @@ jobs:
             -configuration Release \
             -destination 'platform=macOS'
       
-      - name: � Cretate Distribution Archive
+      - name: 📦 Create Distribution Archive
         run: |
           # Find the built app
           BUILD_DIR=$(xcodebuild -project AudioCap.xcodeproj -scheme AudioCap -configuration Release -showBuildSettings | grep "BUILT_PRODUCTS_DIR" | head -1 | sed 's/.*= //')

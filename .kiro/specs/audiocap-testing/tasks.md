@@ -2,7 +2,6 @@
 
 - [x] 1. Set up test targets and project configuration
   - Create AudioCapTests unit test target in Xcode project
-  - Create AudioCapUITests UI test target in Xcode project  
   - Configure test target dependencies and build settings
   - Add ViewInspector package dependency for SwiftUI testing
   - _Requirements: 6.1, 6.2, 6.3_

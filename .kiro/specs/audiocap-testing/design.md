@@ -2,17 +2,15 @@
 
 ## Overview
 
-The AudioCap testing suite will provide comprehensive test coverage for a macOS audio recording application that uses CoreAudio process tap functionality. The design follows Swift testing best practices using XCTest framework, with a focus on unit tests, UI tests, integration tests, and mock objects to enable isolated testing of complex audio functionality.
+The AudioCap testing suite will provide comprehensive test coverage for a macOS audio recording application that uses CoreAudio process tap functionality. The design follows Swift testing best practices using XCTest framework, with a focus on unit tests and mock objects to enable isolated testing of complex audio functionality.
 
 ## Architecture
 
 ### Test Target Structure
 
-The testing suite will be organized into multiple test targets within the Xcode project:
+The testing suite is organized into a single comprehensive test target within the Xcode project:
 
-1. **AudioCapTests** - Unit tests for core functionality
-2. **AudioCapUITests** - UI automation tests  
-3. **AudioCapIntegrationTests** - End-to-end integration tests
+1. **AudioCapTests** - Unit tests for core functionality, UI components, and integration scenarios
 
 ### Test Organization
 
@@ -229,18 +227,17 @@ enum TestError: Error, LocalizedError {
 - Achieve >90% code coverage for core components
 
 ### Integration Test Approach  
-- Test component interactions
+- Test component interactions within the unit test suite
 - Use real file system operations with temporary directories
 - Mock only system-level audio operations
 - Verify end-to-end workflows
 - Test error propagation between components
 
-### UI Test Approach
-- Use XCUITest for user interaction simulation
-- Test accessibility and VoiceOver compatibility
-- Verify visual state changes
-- Test keyboard navigation
-- Mock backend services for predictable UI states
+### UI Component Test Approach
+- Use ViewInspector framework for SwiftUI component testing
+- Test state management and UI updates
+- Verify component behavior and interactions
+- Mock external dependencies for predictable UI states
 
 ### Performance Test Approach
 - Memory leak detection using XCTMemoryMetric
@@ -252,9 +249,7 @@ enum TestError: Error, LocalizedError {
 ## Test Execution Strategy
 
 ### Continuous Integration
-- Run unit tests on every commit
-- Run integration tests on pull requests
-- Run UI tests on release candidates
+- Run comprehensive unit test suite on every commit
 - Generate code coverage reports
 - Fail builds on test failures OR warnings
 - Enforce zero-warning policy - treat warnings as build failures
