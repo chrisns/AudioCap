@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4842BCEA60998283A7668988 /* APIModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37CD76976961149E1DD22E4 /* APIModelsTests.swift */; };
+		E0AC8619B3F10C18B35FBFAD /* APIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE59D2B626F0BF984BEBA38 /* APIModels.swift */; };
 		F431728D2BF68C0C00D918A3 /* AudioRecordingPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431728C2BF68C0C00D918A3 /* AudioRecordingPermission.swift */; };
 		F43172902BF6A92900D918A3 /* AudioProcessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431728F2BF6A92900D918A3 /* AudioProcessController.swift */; };
 		F43172922BF6ABB000D918A3 /* ProcessSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43172912BF6ABB000D918A3 /* ProcessSelectionView.swift */; };
@@ -23,6 +25,17 @@
 		F4A1B0232C4D8C1000000001 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1B0222C4D8C0000000001 /* BaseTestCase.swift */; };
 		F4A1B0262C4D8C4000000001 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1B0242C4D8C2000000001 /* TestHelpers.swift */; };
 		F4A1B0272C4D8C5000000001 /* AudioTestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1B0252C4D8C3000000001 /* AudioTestUtilities.swift */; };
+		F4HTTP0032C4D8D2000000001 /* ServerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4HTTP0012C4D8D0000000001 /* ServerConfiguration.swift */; };
+		F4HTTP0042C4D8D3000000001 /* HTTPServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4HTTP0022C4D8D1000000001 /* HTTPServerManager.swift */; };
+		9A9DD7FBC1A942569BC0F966 /* ProcessAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DD7FBC1A942569BC0F965 /* ProcessAPIHandler.swift */; };
+		BDE72072517F428FB9B9369E /* RecordingAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE72072517F428FB9B9369F /* RecordingAPIHandler.swift */; };
+		A450BB3F1B8C493D9811F491 /* DocumentationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A450BB3F1B8C493D9811F490 /* DocumentationHandler.swift */; };
+		F4API0022C4D8E1000000001 /* APISettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4API0012C4D8E0000000001 /* APISettingsView.swift */; };
+		22FC8B0CBEB1422495BFA36D /* ProcessAPIHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC8B0CBEB1422495BFA36E /* ProcessAPIHandlerTests.swift */; };
+		A91FD4EB75DA4BF28D1AA71C /* RecordingAPIHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91FD4EB75DA4BF28D1AA71D /* RecordingAPIHandlerTests.swift */; };
+		F4HTTP0062C4D8D5000000001 /* HTTPAPIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4HTTP0072C4D8D6000000001 /* HTTPAPIIntegrationTests.swift */; };
+		F4REQVAL022C4D8E4000000001 /* RequestValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4REQVAL012C4D8E2000000001 /* RequestValidator.swift */; };
+		F4RATELIM022C4D8E5000000001 /* RateLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4RATELIM012C4D8E3000000001 /* RateLimiter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,16 +46,11 @@
 			remoteGlobalIDString = F47AD93D2BF5B61E005B75AC;
 			remoteInfo = AudioCap;
 		};
-		F4A1B0042C4D8A2000000001 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F47AD9362BF5B61E005B75AC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F47AD93D2BF5B61E005B75AC;
-			remoteInfo = AudioCap;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1CE59D2B626F0BF984BEBA38 /* APIModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = APIModels.swift; sourceTree = "<group>"; };
+		E37CD76976961149E1DD22E4 /* APIModelsTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIModelsTests.swift; path = HTTPServer/APIModelsTests.swift; sourceTree = "<group>"; };
 		F431728C2BF68C0C00D918A3 /* AudioRecordingPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingPermission.swift; sourceTree = "<group>"; };
 		F431728E2BF691D900D918A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F431728F2BF6A92900D918A3 /* AudioProcessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioProcessController.swift; sourceTree = "<group>"; };
@@ -52,7 +60,6 @@
 		F43172992BF7A51A00D918A3 /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
 		F431729B2BF7B66A00D918A3 /* FileProxyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProxyView.swift; sourceTree = "<group>"; };
 		F431729E2BF7BB0E00D918A3 /* Main.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Main.xcconfig; sourceTree = "<group>"; };
-		F4A1B0212C4D8BF000000001 /* Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Test.xcconfig; sourceTree = "<group>"; };
 		F43172A02BF7BF1300D918A3 /* RecordingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingIndicator.swift; sourceTree = "<group>"; };
 		F47AD93E2BF5B61E005B75AC /* AudioCap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioCap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47AD9412BF5B61E005B75AC /* AudioCapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCapApp.swift; sourceTree = "<group>"; };
@@ -61,9 +68,21 @@
 		F47AD9482BF5B61F005B75AC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F47AD94A2BF5B61F005B75AC /* AudioCap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioCap.entitlements; sourceTree = "<group>"; };
 		F4A1B0052C4D8A3000000001 /* AudioCapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioCapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4A1B0212C4D8BF000000001 /* Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Test.xcconfig; sourceTree = "<group>"; };
 		F4A1B0222C4D8C0000000001 /* BaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
 		F4A1B0242C4D8C2000000001 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		F4A1B0252C4D8C3000000001 /* AudioTestUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTestUtilities.swift; sourceTree = "<group>"; };
+		F4HTTP0012C4D8D0000000001 /* ServerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConfiguration.swift; sourceTree = "<group>"; };
+		F4HTTP0022C4D8D1000000001 /* HTTPServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPServerManager.swift; sourceTree = "<group>"; };
+		9A9DD7FBC1A942569BC0F965 /* ProcessAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessAPIHandler.swift; sourceTree = "<group>"; };
+		BDE72072517F428FB9B9369F /* RecordingAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAPIHandler.swift; sourceTree = "<group>"; };
+		A450BB3F1B8C493D9811F490 /* DocumentationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationHandler.swift; sourceTree = "<group>"; };
+		F4API0012C4D8E0000000001 /* APISettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISettingsView.swift; sourceTree = "<group>"; };
+		22FC8B0CBEB1422495BFA36E /* ProcessAPIHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProcessAPIHandlerTests.swift; path = HTTPServer/ProcessAPIHandlerTests.swift; sourceTree = "<group>"; };
+		A91FD4EB75DA4BF28D1AA71D /* RecordingAPIHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecordingAPIHandlerTests.swift; path = HTTPServer/RecordingAPIHandlerTests.swift; sourceTree = "<group>"; };
+		F4HTTP0072C4D8D6000000001 /* HTTPAPIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPAPIIntegrationTests.swift; sourceTree = "<group>"; };
+		F4REQVAL012C4D8E2000000001 /* RequestValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestValidator.swift; sourceTree = "<group>"; };
+		F4RATELIM012C4D8E3000000001 /* RateLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateLimiter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,16 +101,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F4A1B0082C4D8A6000000001 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE7AC7E2E8D8D96129F48EA0 /* HTTPServer */ = {
+			isa = PBXGroup;
+			children = (
+				E37CD76976961149E1DD22E4 /* APIModelsTests.swift */,
+				22FC8B0CBEB1422495BFA36E /* ProcessAPIHandlerTests.swift */,
+				A91FD4EB75DA4BF28D1AA71D /* RecordingAPIHandlerTests.swift */,
+			);
+			name = HTTPServer;
+			sourceTree = "<group>";
+		};
 		F431729D2BF7BB0600D918A3 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				F431729D2BF7BB0600D918A3 /* Config */,
+				F4HTTP0052C4D8D4000000001 /* HTTPServer */,
 				F431729F2BF7BD4700D918A3 /* ProcessTap */,
 				F47AD9412BF5B61E005B75AC /* AudioCapApp.swift */,
 				F47AD9432BF5B61E005B75AC /* RootView.swift */,
@@ -167,11 +190,11 @@
 				F4A1B00F2C4D8AD000000001 /* Utilities */,
 				F4A1B0102C4D8AE000000001 /* Integration */,
 				F4A1B0112C4D8AF000000001 /* Performance */,
+				CE7AC7E2E8D8D96129F48EA0 /* HTTPServer */,
 			);
 			path = AudioCapTests;
 			sourceTree = "<group>";
 		};
-
 		F4A1B00B2C4D8A9000000001 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +236,7 @@
 		F4A1B0102C4D8AE000000001 /* Integration */ = {
 			isa = PBXGroup;
 			children = (
+				F4HTTP0072C4D8D6000000001 /* HTTPAPIIntegrationTests.swift */,
 			);
 			path = Integration;
 			sourceTree = "<group>";
@@ -222,6 +246,22 @@
 			children = (
 			);
 			path = Performance;
+			sourceTree = "<group>";
+		};
+		F4HTTP0052C4D8D4000000001 /* HTTPServer */ = {
+			isa = PBXGroup;
+			children = (
+				F4HTTP0012C4D8D0000000001 /* ServerConfiguration.swift */,
+				F4HTTP0022C4D8D1000000001 /* HTTPServerManager.swift */,
+				1CE59D2B626F0BF984BEBA38 /* APIModels.swift */,
+				9A9DD7FBC1A942569BC0F965 /* ProcessAPIHandler.swift */,
+				BDE72072517F428FB9B9369F /* RecordingAPIHandler.swift */,
+				A450BB3F1B8C493D9811F490 /* DocumentationHandler.swift */,
+				F4API0012C4D8E0000000001 /* APISettingsView.swift */,
+				F4REQVAL012C4D8E2000000001 /* RequestValidator.swift */,
+				F4RATELIM012C4D8E3000000001 /* RateLimiter.swift */,
+			);
+			path = HTTPServer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,8 +280,6 @@
 			dependencies = (
 			);
 			name = AudioCap;
-			packageProductDependencies = (
-			);
 			productName = AudioCap;
 			productReference = F47AD93E2BF5B61E005B75AC /* AudioCap.app */;
 			productType = "com.apple.product-type.application";
@@ -267,7 +305,6 @@
 			productReference = F4A1B0052C4D8A3000000001 /* AudioCapTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -326,13 +363,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F4A1B01A2C4D8B8000000001 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -350,6 +380,15 @@
 				F43172A12BF7BF1300D918A3 /* RecordingIndicator.swift in Sources */,
 				F43172962BF787C300D918A3 /* CoreAudioUtils.swift in Sources */,
 				F431729C2BF7B66A00D918A3 /* FileProxyView.swift in Sources */,
+				F4HTTP0032C4D8D2000000001 /* ServerConfiguration.swift in Sources */,
+				F4HTTP0042C4D8D3000000001 /* HTTPServerManager.swift in Sources */,
+				E0AC8619B3F10C18B35FBFAD /* APIModels.swift in Sources */,
+				9A9DD7FBC1A942569BC0F966 /* ProcessAPIHandler.swift in Sources */,
+				BDE72072517F428FB9B9369E /* RecordingAPIHandler.swift in Sources */,
+				A450BB3F1B8C493D9811F491 /* DocumentationHandler.swift in Sources */,
+				F4API0022C4D8E1000000001 /* APISettingsView.swift in Sources */,
+				F4REQVAL022C4D8E4000000001 /* RequestValidator.swift in Sources */,
+				F4RATELIM022C4D8E5000000001 /* RateLimiter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,13 +399,10 @@
 				F4A1B0232C4D8C1000000001 /* BaseTestCase.swift in Sources */,
 				F4A1B0262C4D8C4000000001 /* TestHelpers.swift in Sources */,
 				F4A1B0272C4D8C5000000001 /* AudioTestUtilities.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F4A1B0192C4D8B7000000001 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				4842BCEA60998283A7668988 /* APIModelsTests.swift in Sources */,
+				22FC8B0CBEB1422495BFA36D /* ProcessAPIHandlerTests.swift in Sources */,
+				A91FD4EB75DA4BF28D1AA71C /* RecordingAPIHandlerTests.swift in Sources */,
+				F4HTTP0062C4D8D5000000001 /* HTTPAPIIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,11 +413,6 @@
 			isa = PBXTargetDependency;
 			target = F47AD93D2BF5B61E005B75AC /* AudioCap */;
 			targetProxy = F4A1B0022C4D8A1000000001 /* PBXContainerItemProxy */;
-		};
-		F4A1B01B2C4D8B9000000001 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F47AD93D2BF5B61E005B75AC /* AudioCap */;
-			targetProxy = F4A1B0042C4D8A2000000001 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -603,7 +634,6 @@
 			};
 			name = Release;
 		};
-
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -634,7 +664,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */

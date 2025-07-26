@@ -1,8 +1,12 @@
 import SwiftUI
+import OSLog
+
+private let logger = Logger(subsystem: kAppSubsystem, category: "RootView")
 
 @MainActor
 struct RootView: View {
     @State private var permission = AudioRecordingPermission()
+    @Environment(HTTPServerManager.self) private var httpServerManager
 
     var body: some View {
         Form {
@@ -16,6 +20,9 @@ struct RootView: View {
             }
         }
         .formStyle(.grouped)
+        .task {
+            await initializeHTTPServerIfNeeded()
+        }
     }
 
     @ViewBuilder
@@ -38,7 +45,45 @@ struct RootView: View {
 
     @ViewBuilder
     private var recordingView: some View {
-        ProcessSelectionView()
+        VStack(spacing: 0) {
+            // HTTP API Settings Section
+            APISettingsView()
+                .padding(.horizontal)
+            
+            Divider()
+                .padding(.vertical, 8)
+            
+            // Main Recording Interface
+            ProcessSelectionView()
+        }
+    }
+    
+    /// Initialize HTTP server if enabled in configuration
+    private func initializeHTTPServerIfNeeded() async {
+        logger.info("Initializing HTTP server if needed")
+        
+        if httpServerManager.configuration.enabled && !httpServerManager.isRunning {
+            await startHTTPServer()
+        }
+    }
+    
+    /// Start the HTTP server with error handling
+    private func startHTTPServer() async {
+        do {
+            logger.info("Starting HTTP server")
+            try await httpServerManager.start()
+            logger.info("HTTP server started successfully")
+        } catch {
+            logger.error("Failed to start HTTP server: \(error)")
+            
+            // Show error to user and disable server
+            var config = httpServerManager.configuration
+            config.enabled = false
+            httpServerManager.updateConfiguration(config)
+            
+            // TODO: In a real app, you might want to show an alert to the user
+            // For now, the error is logged and the server is disabled
+        }
     }
 }
 
