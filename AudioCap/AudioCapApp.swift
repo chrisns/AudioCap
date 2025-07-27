@@ -13,6 +13,10 @@ struct AudioCapApp: App {
         WindowGroup {
             RootView()
                 .environment(httpServerManager)
+                .task {
+                    // Start HTTP server immediately when app UI appears
+                    await httpServerManager.startOrTerminate()
+                }
         }
         .commands {
             CommandGroup(replacing: .appTermination) {

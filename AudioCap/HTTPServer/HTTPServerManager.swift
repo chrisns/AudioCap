@@ -95,6 +95,16 @@ final class HTTPServerManager {
             await self?.stop()
         }
     }
+    
+    /// Start server or terminate application on failure
+    func startOrTerminate() async {
+        do {
+            try await start()
+        } catch {
+            logger.critical("HTTP server failed to start: \(error). Terminating application.")
+            exit(EXIT_FAILURE)
+        }
+    }
 }
 
 // MARK: - Server Lifecycle
@@ -195,14 +205,12 @@ extension HTTPServerManager {
     private func updateServerWithNewConfiguration() async {
         if isRunning {
             await stop()
-            if configuration.enabled {
-                do {
-                    try await start()
-                } catch {
-                    logger.error("Failed to restart server with new configuration: \(error)")
-                }
+            do {
+                try await start()
+            } catch {
+                logger.error("Failed to restart server with new configuration: \(error)")
             }
-        } else if configuration.enabled {
+        } else {
             do {
                 try await start()
             } catch {
@@ -886,7 +894,15 @@ extension HTTPServerManager {
         case .failed(let error):
             logger.error("Listener failed: \(error)")
             statusMessage = "Server failed: \(error.localizedDescription)"
-            isRunning = false
+            
+            // If server was running and then failed, terminate the application
+            if isRunning {
+                logger.critical("HTTP server failed during runtime: \(error). Terminating application.")
+                isRunning = false
+                exit(EXIT_FAILURE)
+            } else {
+                isRunning = false
+            }
         case .cancelled:
             logger.info("Listener cancelled")
             isRunning = false

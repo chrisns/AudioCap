@@ -83,65 +83,49 @@ struct APISettingsView: View {
     @ViewBuilder
     private var basicConfigurationSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            // Enable/Disable Toggle
+            // Server Status Display (always enabled)
             HStack {
-                Toggle("Enable API Server", isOn: Binding(
-                    get: { httpServerManager.configuration.enabled },
-                    set: { enabled in
-                        logger.info("API server enabled changed to: \(enabled)")
-                        var config = httpServerManager.configuration
-                        config.enabled = enabled
-                        httpServerManager.updateConfiguration(config)
-                    }
-                ))
-                .toggleStyle(.switch)
+                VStack(alignment: .leading) {
+                    Text("API Server Status")
+                        .font(.headline)
+                    Text("Server is always enabled")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
                 
                 Spacer()
                 
-                if httpServerManager.configuration.enabled && !httpServerManager.isRunning {
-                    Button("Start Server") {
-                        Task {
-                            await startServer()
-                        }
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.small)
-                } else if httpServerManager.configuration.enabled && httpServerManager.isRunning {
-                    Button("Stop Server") {
-                        Task {
-                            await httpServerManager.stop()
-                        }
-                    }
-                    .buttonStyle(.bordered)
-                    .controlSize(.small)
+                VStack(alignment: .trailing) {
+                    Text(httpServerManager.isRunning ? "Running" : "Starting...")
+                        .foregroundColor(httpServerManager.isRunning ? .green : .orange)
+                        .font(.caption)
+                        .fontWeight(.medium)
                 }
             }
             
-            if httpServerManager.configuration.enabled {
-                // Port Configuration
-                HStack {
-                    Text("Port:")
-                        .frame(width: 80, alignment: .leading)
-                    
-                    TextField("Port", text: $tempPort)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(width: 80)
-                        .onSubmit {
-                            updatePortConfiguration()
+            // Port Configuration
+            HStack {
+                Text("Port:")
+                    .frame(width: 80, alignment: .leading)
+                
+                TextField("Port", text: $tempPort)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(width: 80)
+                    .onSubmit {
+                        updatePortConfiguration()
+                    }
+                    .onChange(of: tempPort) { _, newValue in
+                        // Validate port input in real-time
+                        if let port = Int(newValue), port > 0 && port <= 65535 {
+                            // Valid port, no visual feedback needed
                         }
-                        .onChange(of: tempPort) { _, newValue in
-                            // Validate port input in real-time
-                            if let port = Int(newValue), port > 0 && port <= 65535 {
-                                // Valid port, no visual feedback needed
-                            }
-                        }
-                    
-                    Text("(1-65535)")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    
-                    Spacer()
-                }
+                    }
+                
+                Text("(1-65535)")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                Spacer()
             }
         }
     }
@@ -250,15 +234,7 @@ struct APISettingsView: View {
         httpServerManager.updateConfiguration(config)
     }
     
-    private func startServer() async {
-        do {
-            logger.info("Starting HTTP server from settings")
-            try await httpServerManager.start()
-        } catch {
-            logger.error("Failed to start HTTP server: \(error)")
-            // In a production app, you might want to show an alert
-        }
-    }
+
     
     private func resetToDefaults() {
         logger.info("Resetting API server configuration to defaults")

@@ -1,6 +1,7 @@
 import Foundation
 import XCTest
 import OSLog
+import Network
 
 /// Utility class for common test operations and async handling
 final class TestHelpers {
@@ -605,5 +606,33 @@ private class MockNSRunningApplication: NSRunningApplication, @unchecked Sendabl
     
     override var bundleURL: URL? {
         return _bundleURL
+    }
+}
+
+// MARK: - Network Test Helpers
+
+extension TestHelpers {
+    /// Find an available port for testing HTTP server
+    static func findAvailablePort() -> Int {
+        do {
+            let listener = try NWListener(using: .tcp, on: .any)
+            listener.start(queue: .main)
+            
+            // Wait briefly for listener to be ready
+            Thread.sleep(forTimeInterval: 0.1)
+            
+            guard case .ready = listener.state,
+                  let port = listener.port?.rawValue,
+                  port > 0 else {
+                listener.cancel()
+                return 5742 // Fallback to default port
+            }
+            
+            listener.cancel()
+            return Int(port)
+        } catch {
+            // Fallback to default port if we can't find one dynamically
+            return 5742
+        }
     }
 }

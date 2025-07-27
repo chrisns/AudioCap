@@ -12,9 +12,6 @@ private let logger = Logger(subsystem: kAppSubsystem, category: "ServerConfigura
 
 /// Configuration settings for the HTTP API server
 struct ServerConfiguration: Codable, Equatable {
-    /// Whether the HTTP server is enabled
-    var enabled: Bool = true
-    
     /// IP address to bind the server to
     var ipAddress: String = "127.0.0.1"
     

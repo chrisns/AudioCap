@@ -1,0 +1,431 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project AudioCap.xcodeproj -scheme AudioCap -configuration Debug -skipMacroValidation -destination platform=macOS build
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  ViewInspector: https://github.com/nalexn/ViewInspector @ 0.10.2
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'AudioCap' in project 'AudioCap' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: 917d822d5e87253ddc2c0cb0a332ff03
+Build description path: /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/XCBuildData/917d822d5e87253ddc2c0cb0a332ff03.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk /Users/cns/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx15.5-24F74-8254517eb8b97d462ccbc072ba9094c9.sdkstatcache
+    cd /Users/cns/httpdocs/AudioCap/AudioCap.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -o /Users/cns/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx15.5-24F74-8254517eb8b97d462ccbc072ba9094c9.sdkstatcache
+
+CreateBuildDirectory /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex
+    cd /Users/cns/httpdocs/AudioCap/AudioCap.xcodeproj
+    builtin-create-build-directory /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex
+
+CreateBuildDirectory /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products
+    cd /Users/cns/httpdocs/AudioCap/AudioCap.xcodeproj
+    builtin-create-build-directory /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products
+
+CreateBuildDirectory /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/EagerLinkingTBDs/Debug
+    cd /Users/cns/httpdocs/AudioCap/AudioCap.xcodeproj
+    builtin-create-build-directory /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/EagerLinkingTBDs/Debug
+
+CreateBuildDirectory /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug
+    cd /Users/cns/httpdocs/AudioCap/AudioCap.xcodeproj
+    builtin-create-build-directory /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap-48168f36c55638a6caedeb1d0fda0ec6-VFS/all-product-headers.yaml
+    cd /Users/cns/httpdocs/AudioCap/AudioCap.xcodeproj
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap-48168f36c55638a6caedeb1d0fda0ec6-VFS/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap.hmap (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap.hmap
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap.DependencyStaticMetadataFileList (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.SwiftFileList (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.SwiftFileList
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.SwiftConstValuesFileList (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap-OutputFileMap.json (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap.DependencyMetadataFileList (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap_const_extract_protocols.json (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.LinkFileList (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.LinkFileList
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources/Entitlements.plist (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources/Entitlements.plist
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-project-headers.hmap (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-project-headers.hmap
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-own-target-headers.hmap (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-generated-files.hmap (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-generated-files.hmap
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-all-target-headers.hmap (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-all-non-framework-target-headers.hmap (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-DebugDylibPath-normal-arm64.txt (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-DebugDylibPath-normal-arm64.txt
+
+ValidateDevelopmentAssets /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    builtin-validate-development-assets --validate YES_ERROR /Users/cns/httpdocs/AudioCap/AudioCap/Preview\ Content
+
+WriteAuxiliaryFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-DebugDylibInstallName-normal-arm64.txt (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    write-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-DebugDylibInstallName-normal-arm64.txt
+
+MkDir /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/Resources (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    /bin/mkdir -p /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/Resources
+
+MkDir /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    /bin/mkdir -p /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS
+
+MkDir /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    /bin/mkdir -p /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents
+
+MkDir /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    /bin/mkdir -p /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app
+
+ProcessProductPackaging /Users/cns/httpdocs/AudioCap/AudioCap/AudioCap.entitlements /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap.app.xcent (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+    Entitlements:
+    
+    {
+    "com.apple.security.app-sandbox" = 1;
+    "com.apple.security.device.audio-input" = 1;
+    "com.apple.security.files.user-selected.read-write" = 1;
+    "com.apple.security.get-task-allow" = 1;
+    "com.apple.security.network.server" = 1;
+}
+    
+    builtin-productPackagingUtility /Users/cns/httpdocs/AudioCap/AudioCap/AudioCap.entitlements -entitlements -format xml -o /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap.app.xcent
+
+ProcessProductPackagingDER /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap.app.xcent /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap.app.xcent.der (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    /usr/bin/derq query -f xml -i /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap.app.xcent -o /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap.app.xcent.der --raw
+
+Ld /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS/__preview.dylib normal (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos14.4 -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -O0 -L/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug -F/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug -install_name @rpath/AudioCap.debug.dylib -rdynamic -Xlinker -no_deduplicate -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap_dependency_info.dat -Xlinker -no_adhoc_codesign -o /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS/__preview.dylib
+
+GenerateAssetSymbols /Users/cns/httpdocs/AudioCap/AudioCap/Preview\ Content/Preview\ Assets.xcassets /Users/cns/httpdocs/AudioCap/AudioCap/Assets.xcassets (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/cns/httpdocs/AudioCap/AudioCap/Preview\ Content/Preview\ Assets.xcassets /Users/cns/httpdocs/AudioCap/AudioCap/Assets.xcassets --compile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/Resources --output-format human-readable-text --notices --warnings --export-dependency-info /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_dependencies --output-partial-info-plist /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_generated_info.plist --app-icon AppIcon --accent-color AccentColor --enable-on-demand-resources NO --development-region en --target-device mac --minimum-deployment-target 14.4 --platform macosx --bundle-identifier codes.rambo.samplecode.AudioCap --generate-swift-asset-symbols /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources/GeneratedAssetSymbols.swift --generate-objc-asset-symbols /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources/GeneratedAssetSymbols.h --generate-asset-symbol-index /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/* com.apple.actool.compilation-results */
+/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources/GeneratedAssetSymbols.h
+/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources/GeneratedAssetSymbols.swift
+
+
+MkDir /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_output/unthinned (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    /bin/mkdir -p /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_output/unthinned
+
+MkDir /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_output/thinned (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    /bin/mkdir -p /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_output/thinned
+
+CompileAssetCatalogVariant thinned /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/Resources /Users/cns/httpdocs/AudioCap/AudioCap/Preview\ Content/Preview\ Assets.xcassets /Users/cns/httpdocs/AudioCap/AudioCap/Assets.xcassets (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/cns/httpdocs/AudioCap/AudioCap/Preview\ Content/Preview\ Assets.xcassets /Users/cns/httpdocs/AudioCap/AudioCap/Assets.xcassets --compile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_dependencies_thinned --output-partial-info-plist /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_generated_info.plist_thinned --app-icon AppIcon --accent-color AccentColor --enable-on-demand-resources NO --development-region en --target-device mac --minimum-deployment-target 14.4 --platform macosx
+/* com.apple.actool.compilation-results */
+/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_generated_info.plist_thinned
+/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_output/thinned/AppIcon.icns
+/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_output/thinned/Assets.car
+
+
+SwiftDriver AudioCap normal arm64 com.apple.xcode.tools.swift.compiler (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name AudioCap -Onone -enforce-exclusivity\=checked @/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.SwiftFileList -DDEBUG -D ENABLE_TCC_SPI -D DEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -target arm64-apple-macos14.4 -g -module-cache-path /Users/cns/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Index.noindex/DataStore -swift-version 5 -I /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug -F /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug -emit-localized-strings -emit-localized-strings-path /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64 -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/cns/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx15.5-24F74-8254517eb8b97d462ccbc072ba9094c9.sdkstatcache -output-file-map /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/cns/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap_const_extract_protocols.json -Xcc -iquote -Xcc /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-generated-files.hmap -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-own-target-headers.hmap -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-all-target-headers.hmap -Xcc -iquote -Xcc /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-project-headers.hmap -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/include -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources-normal/arm64 -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources/arm64 -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap-Swift.h -working-directory /Users/cns/httpdocs/AudioCap -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal arm64 Compiling\ RootView.swift,\ AudioCapApp.swift /Users/cns/httpdocs/AudioCap/AudioCap/RootView.swift /Users/cns/httpdocs/AudioCap/AudioCap/AudioCapApp.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/RootView.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/AudioCapApp.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 Compiling\ AudioProcessController.swift,\ ProcessTap.swift,\ ProcessSelectionView.swift /Users/cns/httpdocs/AudioCap/AudioCap/ProcessTap/AudioProcessController.swift /Users/cns/httpdocs/AudioCap/AudioCap/ProcessTap/ProcessTap.swift /Users/cns/httpdocs/AudioCap/AudioCap/ProcessSelectionView.swift (in target 'AudioCap' from project 'AudioCap')
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/ProcessTap/AudioProcessController.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/ProcessTap/ProcessTap.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/ProcessSelectionView.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 Compiling\ HTTPServerManager.swift,\ APIModels.swift /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/HTTPServerManager.swift /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/APIModels.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/HTTPServerManager.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/APIModels.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 Compiling\ RecordingIndicator.swift,\ CoreAudioUtils.swift /Users/cns/httpdocs/AudioCap/AudioCap/RecordingIndicator.swift /Users/cns/httpdocs/AudioCap/AudioCap/ProcessTap/CoreAudioUtils.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/RecordingIndicator.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/ProcessTap/CoreAudioUtils.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 Compiling\ AudioRecordingPermission.swift,\ RecordingView.swift /Users/cns/httpdocs/AudioCap/AudioCap/ProcessTap/AudioRecordingPermission.swift /Users/cns/httpdocs/AudioCap/AudioCap/RecordingView.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/ProcessTap/AudioRecordingPermission.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/RecordingView.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 Compiling\ RequestValidator.swift,\ RateLimiter.swift /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/RequestValidator.swift /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/RateLimiter.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/RequestValidator.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/RateLimiter.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ AudioCap (in target 'AudioCap' from project 'AudioCap')
+
+EmitSwiftModule normal arm64 (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 Compiling\ ProcessAPIHandler.swift,\ RecordingAPIHandler.swift /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/ProcessAPIHandler.swift /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/RecordingAPIHandler.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/ProcessAPIHandler.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/RecordingAPIHandler.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 Compiling\ DocumentationHandler.swift,\ APISettingsView.swift /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/DocumentationHandler.swift /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/APISettingsView.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/DocumentationHandler.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/APISettingsView.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 Compiling\ AudioFormatConfiguration.swift,\ GeneratedAssetSymbols.swift /Users/cns/httpdocs/AudioCap/AudioCap/ProcessTap/AudioFormatConfiguration.swift /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/ProcessTap/AudioFormatConfiguration.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling RootView.swift, AudioCapApp.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftCompile normal arm64 Compiling\ FileProxyView.swift,\ ServerConfiguration.swift /Users/cns/httpdocs/AudioCap/AudioCap/FileProxyView.swift /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/ServerConfiguration.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/FileProxyView.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftCompile normal arm64 /Users/cns/httpdocs/AudioCap/AudioCap/HTTPServer/ServerConfiguration.swift (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling AudioRecordingPermission.swift, RecordingView.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for AudioCap (in target 'AudioCap' from project 'AudioCap')
+
+SwiftDriver\ Compilation\ Requirements AudioCap normal arm64 com.apple.xcode.tools.swift.compiler (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name AudioCap -Onone -enforce-exclusivity\=checked @/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.SwiftFileList -DDEBUG -D ENABLE_TCC_SPI -D DEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -target arm64-apple-macos14.4 -g -module-cache-path /Users/cns/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Index.noindex/DataStore -swift-version 5 -I /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug -F /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug -emit-localized-strings -emit-localized-strings-path /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64 -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/cns/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx15.5-24F74-8254517eb8b97d462ccbc072ba9094c9.sdkstatcache -output-file-map /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/cns/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap_const_extract_protocols.json -Xcc -iquote -Xcc /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-generated-files.hmap -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-own-target-headers.hmap -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-all-target-headers.hmap -Xcc -iquote -Xcc /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-project-headers.hmap -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/include -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources-normal/arm64 -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources/arm64 -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap-Swift.h -working-directory /Users/cns/httpdocs/AudioCap -experimental-emit-module-separately -disable-cmo
+
+SwiftMergeGeneratedHeaders /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources/AudioCap-Swift.h /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap-Swift.h (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    builtin-swiftHeaderTool -arch arm64 /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap-Swift.h -o /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources/AudioCap-Swift.h
+
+Copy /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.swiftmodule/arm64-apple-macos.swiftmodule /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.swiftmodule (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.swiftmodule /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.swiftmodule/arm64-apple-macos.swiftmodule
+
+Copy /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.swiftmodule/arm64-apple-macos.swiftdoc /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.swiftdoc (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.swiftdoc /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.swiftmodule/arm64-apple-macos.swiftdoc
+
+Copy /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.swiftmodule/arm64-apple-macos.abi.json /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.abi.json (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.abi.json /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.swiftmodule/arm64-apple-macos.abi.json
+
+Copy /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.swiftsourceinfo (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.swiftsourceinfo /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo
+
+SwiftDriverJobDiscovery normal arm64 Compiling RequestValidator.swift, RateLimiter.swift (in target 'AudioCap' from project 'AudioCap')
+
+LinkAssetCatalog /Users/cns/httpdocs/AudioCap/AudioCap/Preview\ Content/Preview\ Assets.xcassets /Users/cns/httpdocs/AudioCap/AudioCap/Assets.xcassets (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    builtin-linkAssetCatalog --thinned /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_output/thinned --thinned-dependencies /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_dependencies_thinned --thinned-info-plist-content /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_generated_info.plist_thinned --unthinned /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_output/unthinned --unthinned-dependencies /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_dependencies_unthinned --unthinned-info-plist-content /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_generated_info.plist_unthinned --output /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/Resources --plist-output /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_generated_info.plist
+note: Emplaced /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/Resources/AppIcon.icns (in target 'AudioCap' from project 'AudioCap')
+note: Emplaced /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/Resources/Assets.car (in target 'AudioCap' from project 'AudioCap')
+
+ProcessInfoPlistFile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/Info.plist /Users/cns/httpdocs/AudioCap/AudioCap/Info.plist (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    builtin-infoPlistUtility /Users/cns/httpdocs/AudioCap/AudioCap/Info.plist -producttype com.apple.product-type.application -genpkginfo /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/PkgInfo -expandbuildsettings -platform macosx -additionalcontentfile /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/assetcatalog_generated_info.plist -o /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/Info.plist
+
+SwiftDriverJobDiscovery normal arm64 Compiling AudioFormatConfiguration.swift, GeneratedAssetSymbols.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftDriverJobDiscovery normal arm64 Compiling ProcessAPIHandler.swift, RecordingAPIHandler.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftDriverJobDiscovery normal arm64 Compiling RecordingIndicator.swift, CoreAudioUtils.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftDriverJobDiscovery normal arm64 Compiling DocumentationHandler.swift, APISettingsView.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftDriverJobDiscovery normal arm64 Compiling FileProxyView.swift, ServerConfiguration.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftDriverJobDiscovery normal arm64 Compiling HTTPServerManager.swift, APIModels.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftDriverJobDiscovery normal arm64 Compiling AudioProcessController.swift, ProcessTap.swift, ProcessSelectionView.swift (in target 'AudioCap' from project 'AudioCap')
+
+SwiftDriver\ Compilation AudioCap normal arm64 com.apple.xcode.tools.swift.compiler (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name AudioCap -Onone -enforce-exclusivity\=checked @/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.SwiftFileList -DDEBUG -D ENABLE_TCC_SPI -D DEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -target arm64-apple-macos14.4 -g -module-cache-path /Users/cns/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Index.noindex/DataStore -swift-version 5 -I /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug -F /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug -emit-localized-strings -emit-localized-strings-path /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64 -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/cns/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx15.5-24F74-8254517eb8b97d462ccbc072ba9094c9.sdkstatcache -output-file-map /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/cns/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap_const_extract_protocols.json -Xcc -iquote -Xcc /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-generated-files.hmap -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-own-target-headers.hmap -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-all-target-headers.hmap -Xcc -iquote -Xcc /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-project-headers.hmap -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/include -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources-normal/arm64 -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources/arm64 -Xcc -I/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap-Swift.h -working-directory /Users/cns/httpdocs/AudioCap -experimental-emit-module-separately -disable-cmo
+
+Ld /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS/AudioCap.debug.dylib normal (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos14.4 -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -O0 -L/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -L/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug -F/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -F/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug -filelist /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.LinkFileList -install_name @rpath/AudioCap.debug.dylib -Xlinker -rpath -Xlinker @executable_path/../Frameworks -Xlinker -object_path_lto -Xlinker /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap_dependency_info.dat -fobjc-link-runtime -fprofile-instr-generate -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.swiftmodule -Xlinker -alias -Xlinker _main -Xlinker ___debug_main_executable_dylib_entry_point -Xlinker -no_adhoc_codesign -o /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS/AudioCap.debug.dylib
+
+ConstructStubExecutorLinkFileList /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-ExecutorLinkFileList-normal-arm64.txt (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    construct-stub-executor-link-file-list /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS/AudioCap.debug.dylib /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-ExecutorLinkFileList-normal-arm64.txt
+note: Using stub executor library with Swift entry point. (in target 'AudioCap' from project 'AudioCap')
+
+Ld /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS/AudioCap normal (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos14.4 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -O0 -L/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug -F/Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker @executable_path/../Frameworks -rdynamic -Xlinker -no_deduplicate -Xlinker -debug_variant -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-DebugDylibPath-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-DebugDylibInstallName-normal-arm64.txt -Xlinker -filelist -Xlinker /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap-ExecutorLinkFileList-normal-arm64.txt /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS/AudioCap.debug.dylib -Xlinker -no_adhoc_codesign -o /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS/AudioCap
+
+CopySwiftLibs /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS/AudioCap.debug.dylib --scan-folder /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/Frameworks --scan-folder /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/PlugIns --scan-folder /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/Library/SystemExtensions --scan-folder /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/Extensions --platform macosx --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+ExtractAppIntentsMetadata (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name AudioCap --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk --xcode-version 16F6 --platform-family macOS --deployment-target 14.4 --bundle-identifier codes.rambo.samplecode.AudioCap --output /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/Resources --target-triple arm64-apple-macos14.4 --binary-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS/AudioCap --dependency-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap_dependency_info.dat --stringsdata-file /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.SwiftFileList --metadata-file-list /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap.DependencyMetadataFileList --static-metadata-file-list /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap.DependencyStaticMetadataFileList --swift-const-vals-list /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/Objects-normal/arm64/AudioCap.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2025-07-27 13:12:35.879 appintentsmetadataprocessor[10837:39855055] Starting appintentsmetadataprocessor export
+2025-07-27 13:12:35.881 appintentsmetadataprocessor[10837:39855055] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CodeSign /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS/AudioCap.debug.dylib (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS/AudioCap.debug.dylib
+
+CodeSign /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS/__preview.dylib (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app/Contents/MacOS/__preview.dylib
+
+CodeSign /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --entitlements /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Intermediates.noindex/AudioCap.build/Debug/AudioCap.build/AudioCap.app.xcent --timestamp\=none --generate-entitlement-der /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app
+
+RegisterExecutionPolicyException /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    builtin-RegisterExecutionPolicyException /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app
+
+Validate /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    builtin-validationUtility /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app -no-validate-extension -infoplist-subpath Contents/Info.plist
+
+Touch /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    /usr/bin/touch -c /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app
+
+RegisterWithLaunchServices /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app (in target 'AudioCap' from project 'AudioCap')
+    cd /Users/cns/httpdocs/AudioCap
+    /System/Library/Frameworks/CoreServices.framework/Versions/Current/Frameworks/LaunchServices.framework/Versions/Current/Support/lsregister -f -R -trusted /Users/cns/Library/Developer/Xcode/DerivedData/AudioCap-dsxkoszfpdizatbajbthaoiavpgt/Build/Products/Debug/AudioCap.app
+
+note: Disabling hardened runtime with ad-hoc codesigning. (in target 'AudioCap' from project 'AudioCap')
+** BUILD SUCCEEDED **
+

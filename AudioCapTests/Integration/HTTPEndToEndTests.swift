@@ -20,7 +20,6 @@ final class HTTPEndToEndTests: XCTestCase {
         await MainActor.run {
             httpServerManager = HTTPServerManager()
             var config = httpServerManager.configuration
-            config.enabled = true
             config.port = testPort
             config.ipAddress = "127.0.0.1"
             httpServerManager.updateConfiguration(config)

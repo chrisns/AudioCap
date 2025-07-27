@@ -1,0 +1,93 @@
+---
+description: Implements Kiro-style spec-driven development workflow with mandatory Requirements → Design → Tasks approval cycle. This rule enforces systematic feature planning with explicit user approval gates, preventing chaotic coding and ensuring traceability. Used when starting new features or when user requests structured development approach.
+globs: 
+alwaysApply: false
+---
+
+# Kiro-Style Feature Specification Workflow
+
+## Core Workflow: Requirements → Design → Tasks → Approval
+
+When implementing features, ALWAYS follow this exact sequence:
+
+### 1. Requirements Gathering Phase
+- **MUST** create `.kiro/specs/{feature-name}/requirements.md` 
+- Generate comprehensive requirements WITHOUT asking permission first
+- Include:
+  - Problem statement and user needs
+  - Functional requirements (what the system must do)
+  - Non-functional requirements (performance, security, etc.)
+  - Acceptance criteria
+  - Dependencies and constraints
+- After creating requirements, **STOP** and ask: "Do the requirements look good? Any changes needed before proceeding to design?"
+
+### 2. Design Phase  
+- **ONLY** proceed after explicit requirements approval
+- Create `.kiro/specs/{feature-name}/design.md`
+- Include:
+  - Architecture overview
+  - Component breakdown
+  - Data models/schemas
+  - API interfaces
+  - User flow diagrams
+  - Technical implementation approach
+- After creating design, **STOP** and ask: "Does the design look good? Any changes needed before creating tasks?"
+
+### 3. Task Planning Phase
+- **ONLY** proceed after explicit design approval  
+- Create `.kiro/specs/{feature-name}/tasks.md`
+- Break work into granular, actionable tasks
+- Include:
+  - Task dependencies
+  - Estimated effort
+  - Acceptance criteria per task
+  - Priority levels
+- After creating tasks, **STOP** and ask: "Do the tasks look good? Ready to begin implementation?"
+
+## Mandatory Rules
+
+- **NEVER** skip phases or combine them
+- **NEVER** proceed without explicit user approval ("looks good", "approved", "yes", etc.)
+- **ALWAYS** create files in `.kiro/specs/{feature-name}/` directory
+- **ALWAYS** use meaningful feature names (kebab-case)
+- **ALWAYS** wait for approval before moving to next phase
+
+## File Structure
+
+```
+.kiro/specs/{feature-name}/
+├── requirements.md
+├── design.md
+└── tasks.md
+```
+
+## User Approval Triggers
+
+Stop and wait for approval when you see these responses:
+- ✅ "looks good" / "approved" / "yes" / "proceed" 
+- ✅ "make these changes: [specific feedback]"
+- ❌ Continue if no explicit approval given
+
+## Examples
+
+<example>
+User: "Add user authentication"
+Assistant: 
+1. Creates `.kiro/specs/user-authentication/requirements.md` with comprehensive auth requirements
+2. Stops and asks: "Do the requirements look good? Any changes needed before proceeding to design?"
+3. Waits for explicit approval before continuing
+</example>
+
+<example type="invalid">
+User: "Add user authentication" 
+Assistant: 
+1. Creates requirements.md, design.md, and tasks.md all at once
+2. Proceeds directly to implementation
+[WRONG: Skipped approval gates and combined phases]
+</example>
+
+## Phase Transition Prompts
+
+- **Requirements → Design**: "Do the requirements look good? Any changes needed before proceeding to design?"
+- **Design → Tasks**: "Does the design look good? Any changes needed before creating tasks?"  
+- **Tasks → Implementation**: "Do the tasks look good? Ready to begin implementation?"
