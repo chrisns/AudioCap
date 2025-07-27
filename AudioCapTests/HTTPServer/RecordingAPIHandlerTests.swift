@@ -6,10 +6,13 @@
 //
 
 import XCTest
+import Foundation
+import OSLog
 @testable import AudioCap
 
-@MainActor
-final class RecordingAPIHandlerTests: XCTestCase {
+/// Tests for RecordingAPIHandler functionality
+/// Requirements: 3.3 (API Endpoints), 3.6 (Error Handling)
+final class RecordingAPIHandlerTests: BaseTestCase {
     
     private var processController: AudioProcessController!
     private var recordingAPIHandler: RecordingAPIHandler!
@@ -25,11 +28,11 @@ final class RecordingAPIHandlerTests: XCTestCase {
 
         try await super.setUp()
 
-        processController = AudioProcessController()
-        recordingAPIHandler = RecordingAPIHandler(processController: processController)
+        processController = await AudioProcessController()
+        recordingAPIHandler = await RecordingAPIHandler(processController: processController)
 
         // Activate process controller to populate processes
-        processController.activate()
+        await processController.activate()
         try await Task.sleep(nanoseconds: 200_000_000) // 0.2 seconds
     }
     
@@ -139,7 +142,7 @@ final class RecordingAPIHandlerTests: XCTestCase {
     
     func testHandleStartRecording_ValidProcess() async throws {
         // Given: A valid process from the process list
-        guard let firstProcess = processController.processes.first else {
+        guard let firstProcess = await processController.processes.first else {
             throw XCTSkip("No processes available for testing")
         }
         
@@ -161,7 +164,7 @@ final class RecordingAPIHandlerTests: XCTestCase {
     
     func testHandleStartRecording_AlreadyRecording() async throws {
         // Given: A recording is already in progress
-        guard let firstProcess = processController.processes.first else {
+        guard let firstProcess = await processController.processes.first else {
             throw XCTSkip("No processes available for testing")
         }
         
@@ -198,7 +201,7 @@ final class RecordingAPIHandlerTests: XCTestCase {
     
     func testHandleStopRecording_ValidRecording() async throws {
         // Given: A recording is in progress
-        guard let firstProcess = processController.processes.first else {
+        guard let firstProcess = await processController.processes.first else {
             throw XCTSkip("No processes available for testing")
         }
         
@@ -231,7 +234,7 @@ final class RecordingAPIHandlerTests: XCTestCase {
     
     func testHandleRecordingStatus_DuringRecording() async throws {
         // Given: A recording is in progress
-        guard let firstProcess = processController.processes.first else {
+        guard let firstProcess = await processController.processes.first else {
             throw XCTSkip("No processes available for testing")
         }
         
@@ -257,7 +260,7 @@ final class RecordingAPIHandlerTests: XCTestCase {
     
     func testHandleRecordingStatus_AfterStopping() async throws {
         // Given: A recording was started and stopped
-        guard let firstProcess = processController.processes.first else {
+        guard let firstProcess = await processController.processes.first else {
             throw XCTSkip("No processes available for testing")
         }
         
@@ -435,7 +438,7 @@ final class RecordingAPIHandlerTests: XCTestCase {
     
     func testRecordingAPIHandler_FullWorkflow() async throws {
         // Given: A valid process
-        guard let firstProcess = processController.processes.first else {
+        guard let firstProcess = await processController.processes.first else {
             throw XCTSkip("No processes available for testing")
         }
         

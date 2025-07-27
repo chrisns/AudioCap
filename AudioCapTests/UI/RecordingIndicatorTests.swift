@@ -3,7 +3,6 @@ import SwiftUI
 import ViewInspector
 @testable import AudioCap
 
-@MainActor
 final class RecordingIndicatorTests: XCTestCase {
     
     // MARK: - Test Setup
@@ -12,8 +11,10 @@ final class RecordingIndicatorTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Create a test icon for testing
-        testIcon = NSWorkspace.shared.icon(forFile: "/System/Applications/Music.app")
+        // Create a mock test icon instead of accessing NSWorkspace
+        // Use a system symbol name that's guaranteed to exist
+        testIcon = NSImage(systemSymbolName: "music.note", accessibilityDescription: "Test Icon") 
+            ?? NSImage(size: NSSize(width: 16, height: 16))
     }
     
     override func tearDown() {

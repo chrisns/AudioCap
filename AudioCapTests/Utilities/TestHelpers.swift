@@ -578,7 +578,7 @@ struct TestPermissionScenario {
 }
 
 /// Mock implementation of NSRunningApplication for testing
-private class MockNSRunningApplication: NSRunningApplication, @unchecked Sendable {
+private class MockNSRunningApplication: NSRunningApplication {
     private let _processIdentifier: pid_t
     private let _localizedName: String?
     private let _bundleIdentifier: String?

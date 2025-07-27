@@ -3,8 +3,7 @@ import SwiftUI
 import ViewInspector
 @testable import AudioCap
 
-@MainActor
-final class RecordingViewTests: XCTestCase {
+final class RecordingViewTests: BaseUITestCase {
     
     // MARK: - Test Setup
     

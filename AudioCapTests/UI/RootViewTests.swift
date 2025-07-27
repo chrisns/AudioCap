@@ -3,8 +3,7 @@ import SwiftUI
 import ViewInspector
 @testable import AudioCap
 
-@MainActor
-final class RootViewTests: XCTestCase {
+final class RootViewTests: BaseUITestCase {
     
     // MARK: - Test Setup
     
@@ -217,7 +216,6 @@ final class RootViewTests: XCTestCase {
 // MARK: - Test-Specific Views
 
 /// A testable version of RootView that allows dependency injection
-@MainActor
 struct TestableRootView: View {
     let permission: MockPermissionHandler
     

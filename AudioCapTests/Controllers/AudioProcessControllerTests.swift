@@ -6,8 +6,7 @@ import OSLog
 
 /// Tests for AudioProcessController functionality including process discovery,
 /// enumeration, grouping, and automatic updates
-@MainActor
-final class AudioProcessControllerTests: XCTestCase {
+final class AudioProcessControllerTests: BaseTestCase {
     
     private var controller: AudioProcessController!
     private var cancellables: Set<AnyCancellable>!

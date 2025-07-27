@@ -3,7 +3,6 @@ import SwiftUI
 import ViewInspector
 @testable import AudioCap
 
-@MainActor
 final class ProcessSelectionViewTests: XCTestCase {
     
     // MARK: - Test Setup
